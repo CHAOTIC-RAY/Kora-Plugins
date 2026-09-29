@@ -10,6 +10,32 @@ adds its results to the same Discover feed.
 bundled or executed, so a source cannot do anything a plain HTTP request could
 not. That is the whole trust model.
 
+> **A source is one category of plugin.** Kora's plugin system also covers
+> themes, library integrations (Kindle, Calibre) and tools. Those categories
+> are declared in the app's `PluginManifest` but have no engine yet, so this
+> repository currently ships sources only.
+
+---
+
+## What ships here
+
+Eight sources, every one verified end to end against its live site —
+listings, then details, then chapters, then actual page images.
+
+| Source | Kind | Status |
+|---|---|---|
+| Project Gutenberg | book | search only, no browse endpoint |
+| Internet Archive (Texts) | book | verified |
+| MangaZin | manga | 661 chapters, 18 pages verified |
+| MangaReadOrg | manga | 3,864 chapters, 54 pages verified |
+| ManhuaPlus | manga | 3,364 chapters, 12 pages verified |
+| Manhuaus | manga | 358 chapters, 15 pages verified |
+| ManhwaHot | manga | gated, 445 chapters verified |
+| S2Read | manga | gated, 231 chapters verified |
+
+Gated sources are flagged `piracy: true`. Kora lists them but keeps them
+disabled until the user opts in, per source.
+
 ---
 
 ## Install
@@ -31,6 +57,7 @@ sources/
   comics/
 scripts/
   build-index.mjs   regenerates index.json from sources/**
+  verify-index.mjs  fetches every published definition + icon
 ```
 
 `index.json` is generated. Edit the source files, then run:
@@ -41,6 +68,15 @@ node scripts/build-index.mjs
 
 The build **fails loudly** on a source with no `id`, no `name` or no `baseUrl`,
 and on a numeric id too long to survive JSON (see *Ids* below).
+
+After building, check that every published URL actually resolves:
+
+```bash
+node scripts/verify-index.mjs
+```
+
+A dead `apkUrl` or `icon` renders as a broken card, so shipping one is worse
+than admitting the gap.
 
 ---
 
@@ -68,6 +104,30 @@ something.
 
 `npm run build:index` **warns** for any source with no `icon`. That warning
 is the reason this rule is enforced rather than merely documented.
+
+## Why so few sites ship
+
+Of the 29 Madara sources in the Inkdex 0.9 index, **4 are usable**. The rest
+were tested and left out, and the reason is worth stating plainly because
+"it didn't work" is not a useful answer.
+
+Running `kora-repo/scripts/test-all-madara-sites.mts` classifies every site:
+
+| Outcome | Count | Meaning |
+|---|---|---|
+| Listings → details → chapters → page images | **4** | shipped |
+| Listing grid parses, no chapters in HTML | 7 | chapters are JavaScript-rendered; no selector can fix it |
+| No parseable listing at all | 18 | wrong theme, dead, or the page 403s |
+
+Seven sites are the interesting case. They render a perfect listing grid —
+`div.page-item-detail` and all — and then serve a details page with **zero**
+chapter links, because the chapter list is built client-side. Upstream's own
+parser does not handle them either. They are not broken and not fixable from
+here; they need a browser.
+
+**A card that opens to an empty reader is worse than no card.** That is the
+whole reason only 4 ship, and it is why `build-index.mjs` is not the place
+that decides — the live test is.
 
 ## Madara sources (the big one)
 
