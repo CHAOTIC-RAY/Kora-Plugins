@@ -1,0 +1,53 @@
+{
+  "name": "Kora Sources",
+  "badgeLabel": "KORA",
+  "contact": {
+    "website": "https://github.com/CHAOTIC-RAY/Kora-Sources"
+  },
+  "extensionList": {
+    "extensions": [
+      {
+        "name": "Internet Archive Texts",
+        "packageName": "kora.misc.internet-archive-texts",
+        "resources": {
+          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/legal/internet-archive.json",
+          "iconUrl": "https://archive.org/images/glogo.jpg"
+        },
+        "extensionLib": "kora-1",
+        "versionCode": "1000",
+        "versionName": "1.0.0",
+        "sources": [
+          {
+            "id": "kora-legal-internet-archive",
+            "name": "Internet Archive (Texts)",
+            "language": "en",
+            "piracy": false,
+            "nsfw": false,
+            "homeUrl": "https://archive.org"
+          }
+        ]
+      },
+      {
+        "name": "Open Library",
+        "packageName": "kora.misc.open-library",
+        "resources": {
+          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/legal/openlibrary.json",
+          "iconUrl": "https://openlibrary.org/static/images/openlibrary-logo.png"
+        },
+        "extensionLib": "kora-1",
+        "versionCode": "1000",
+        "versionName": "1.0.0",
+        "sources": [
+          {
+            "id": "kora-legal-openlibrary",
+            "name": "Open Library",
+            "language": "en",
+            "piracy": false,
+            "nsfw": false,
+            "homeUrl": "https://openlibrary.org"
+          }
+        ]
+      }
+    ]
+  }
+}

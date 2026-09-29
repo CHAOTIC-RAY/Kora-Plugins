@@ -1,0 +1,7 @@
+node_modules/
+*.log
+.DS_Store
+
+# A source definition that has not been verified against its live site yet.
+# Rename to .json when it works — the index build picks it up automatically.
+*.json.unverified

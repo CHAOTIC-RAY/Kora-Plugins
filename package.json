@@ -1,0 +1,11 @@
+{
+  "name": "Kora Sources",
+  "private": false,
+  "description": "Source plugins for the Kora reader — JSON data, not code.",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "scripts": {
+    "build:index": "node scripts/build-index.mjs",
+    "verify": "node scripts/verify-sources.mts"
+  }
+}

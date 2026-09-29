@@ -1,0 +1,30 @@
+NOTICE
+======
+
+Kora Sources defines its own source-plugin format. The *design* is informed by
+the Tachiyomi ecosystem, but no upstream code is copied into this repository.
+
+Upstream projects referenced:
+
+  Tachiyomi — https://github.com/ZhanZiyuan/tachiyomi
+  Keiyoushi extensions — https://github.com/keiyoushi/extensions-source
+  License: Apache License 2.0
+
+What we took from them, and what we did not:
+
+  * The jsoup selector dialect for HTML sources (`:eq(n)`, `@attr`, `@text`,
+    `##`, `first`, `last`). This is a *syntax*, not code, and Kora implements
+    its own interpreter for it.
+  * The Gen 2 registry shape (`index.json` with `extensionList.extensions[].sources[]`).
+    The field names match so that tooling which already reads that format can
+    read ours.
+  * The convention that item urls are stored relative to `baseUrl`.
+
+What is ours:
+
+  * Every source file in sources/ is our own JSON.
+  * The engine that executes them (selector interpreter, JSON path resolver,
+    plugin client, install/enable logic) is written from scratch for Kora.
+
+If you believe something here is a derivative work of upstream, open an issue
+and we will review it.

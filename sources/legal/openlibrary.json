@@ -1,0 +1,33 @@
+{
+  "id": "kora-legal-openlibrary",
+  "name": "Open Library",
+  "lang": "en",
+  "version": 1,
+  "nsfw": false,
+  "kind": "book",
+  "api": "json",
+  "piracy": false,
+  "baseUrl": "https://openlibrary.org",
+  "icon": "https://openlibrary.org/static/images/openlibrary-logo.png",
+  "endpoints": {
+    "json": {
+      "search": {
+        "url": "/search.json?q={query}&limit=20&fields=key,title,author_name,cover_i,first_publish_year,ia,has_fulltext",
+        "path": "docs",
+        "title": "title",
+        "url_": "key",
+        "author": "author_name[]",
+        "thumb": "cover_i",
+        "limit": 20
+      },
+      "details": {
+        "url": "{mangaUrl}.json",
+        "path": "",
+        "title": "title",
+        "author": "authors[]",
+        "description": "description",
+        "status": { "path": "type", "map": {} }
+      }
+    }
+  }
+}
