@@ -296,6 +296,32 @@ For HTML sources, check the selector in a browser console first:
 document.querySelectorAll("div.manga-card").length
 ```
 
+### Verifying a whole Madara index at once
+
+`kora-repo/scripts/test-all-madara-sites.mts` walks every source in an
+upstream index and tests each one end to end — listings, details, chapters,
+then page images. A source only passes if a chapter actually yields images:
+
+```bash
+cd ../kora-repo
+npx tsx scripts/test-all-madara-sites.mts            # all
+npx tsx scripts/test-all-madara-sites.mts MangaZin   # one
+```
+
+`generate-madara-sources.mts` then writes a definition **only** for sites
+that still pass, re-testing each one at the moment it is written. A card
+that opens to an empty reader is worse than no card, so the live test —
+not membership of an index — decides what ships.
+
+Two failure modes worth knowing, because they look identical in code:
+
+- **Selector gap** — the page contains chapter links the engine missed.
+  Fixable with a per-site override in the `madara` block.
+- **JS-rendered chapters** — the server HTML has no chapter list at all,
+  only a "Read First" button. No selector can fix this; the site needs a
+  browser. The test prints which of the two it found so you don't waste an
+  afternoon on a selector that was never going to match.
+
 ---
 
 ## Contributing
