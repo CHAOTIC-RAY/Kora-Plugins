@@ -24,7 +24,7 @@ async function fetchJson(url: string, headers?: Record<string, string>) {
 }
 
 async function testPlugin(path: string, name: string) {
-  const mod = await import(path);
+  const mod = await import("file:///" + path.split("\\").join("/"));
   const plugin = (mod.default || mod.plugin) as SourcePlugin;
   console.log(`\n--- ${name} (id ${plugin.id}) ---`);
 
