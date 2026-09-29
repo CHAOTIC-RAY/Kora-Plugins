@@ -8,6 +8,7 @@
   "kind": "manga",
   "theme": "madara",
   "baseUrl": "https://mangazin.org",
+  "icon": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/icons/mangazin.png",
   "gen2": {
     "packageName": "eu.kanade.tachiyomi.extension.en.mangazin",
     "versionName": "1.4.9",

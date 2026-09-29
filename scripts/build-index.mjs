@@ -101,9 +101,27 @@ function slug(s) {
   return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
+/**
+ * An icon is part of a source's identity, not decoration: a grid of identical
+ * puzzle pieces is impossible to scan. Prefer an icon committed to this repo —
+ * stable, no hotlink risk, no third party able to swap it. Fall back to the
+ * source's own favicon.
+ */
+function iconFor(group) {
+  const icon = group.find((g) => g.icon)?.icon || "";
+  if (!icon) {
+    console.warn(
+      `warn  ${group[0].name}: no icon — add a PNG to icons/ and point "icon" at it, ` +
+        `or this source renders as an indistinguishable placeholder`
+    );
+  }
+  return icon;
+}
+
 const extensions = [];
 for (const [pkg, group] of byPackage) {
   const nsfw = group.some((g) => g.nsfw);
+  const iconUrl = iconFor(group);
   extensions.push({
     name: pkg.split(".").pop().replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
     packageName: pkg,
@@ -111,7 +129,7 @@ for (const [pkg, group] of byPackage) {
       // Points at the source file itself, so installing resolves to the
       // definition that declared this extension.
       apkUrl: `https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/${group[0].__file}`,
-      iconUrl: group[0].icon || "",
+      iconUrl,
     },
     extensionLib: "kora-1",
     versionCode: "1000",

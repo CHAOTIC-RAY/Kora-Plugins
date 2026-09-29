@@ -53,7 +53,7 @@
         "packageName": "eu.kanade.tachiyomi.extension.en.mangazin",
         "resources": {
           "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/manga/mangazin.json",
-          "iconUrl": ""
+          "iconUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/icons/mangazin.png"
         },
         "extensionLib": "kora-1",
         "versionCode": "1000",
@@ -74,7 +74,7 @@
         "packageName": "eu.kanade.tachiyomi.extension.en.manhuahot",
         "resources": {
           "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/manga/manhuahot.json",
-          "iconUrl": ""
+          "iconUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/icons/manhuahot.png"
         },
         "extensionLib": "kora-1",
         "versionCode": "1000",
@@ -95,7 +95,7 @@
         "packageName": "eu.kanade.tachiyomi.extension.en.s2read",
         "resources": {
           "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/manga/s2read.json",
-          "iconUrl": ""
+          "iconUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/icons/s2read.png"
         },
         "extensionLib": "kora-1",
         "versionCode": "1000",

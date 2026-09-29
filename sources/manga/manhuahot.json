@@ -8,6 +8,7 @@
   "kind": "manga",
   "theme": "madara",
   "baseUrl": "https://manhuahot.com",
+  "icon": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/icons/manhuahot.png",
   "gen2": {
     "packageName": "eu.kanade.tachiyomi.extension.en.manhuahot",
     "versionName": "1.4.19",
