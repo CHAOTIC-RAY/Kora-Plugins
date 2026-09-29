@@ -10,10 +10,11 @@
   "nsfw": false,
   "enabled": false,
   "website": "https://mangazin.org",
-  "icon": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/manga/icons/mangazin.png",
+  "icon": "",
   "description": "MangaZin — a Madara-hosted manga site, read through the shared Kora Madara engine.",
   "madara": {
     "mangaPath": "/manga/",
     "popularPath": "/manga/?status=hot&page=1"
-  }
+  },
+  "iconNote": "No icon published upstream for this site; the card falls back to a monogram."
 }

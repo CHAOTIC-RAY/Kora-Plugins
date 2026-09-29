@@ -7,6 +7,27 @@
   "extensionList": {
     "extensions": [
       {
+        "name": "Project Gutenberg",
+        "packageName": "kora.misc.project-gutenberg",
+        "resources": {
+          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/legal/gutenberg.json",
+          "iconUrl": "https://www.gutenberg.org/cache/epub/1342/pg1342.cover.medium.jpg"
+        },
+        "extensionLib": "kora-1",
+        "versionCode": "1000",
+        "versionName": "1.0.0",
+        "sources": [
+          {
+            "id": "kora-legal-gutenberg",
+            "name": "Project Gutenberg",
+            "language": "en",
+            "piracy": false,
+            "nsfw": false,
+            "homeUrl": "https://gutendex.com"
+          }
+        ]
+      },
+      {
         "name": "Internet Archive Texts",
         "packageName": "kora.misc.internet-archive-texts",
         "resources": {
@@ -24,27 +45,6 @@
             "piracy": false,
             "nsfw": false,
             "homeUrl": "https://archive.org"
-          }
-        ]
-      },
-      {
-        "name": "Open Library",
-        "packageName": "kora.misc.open-library",
-        "resources": {
-          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/legal/openlibrary.json",
-          "iconUrl": "https://openlibrary.org/static/images/openlibrary-logo.png"
-        },
-        "extensionLib": "kora-1",
-        "versionCode": "1000",
-        "versionName": "1.0.0",
-        "sources": [
-          {
-            "id": "kora-legal-openlibrary",
-            "name": "Open Library",
-            "language": "en",
-            "piracy": false,
-            "nsfw": false,
-            "homeUrl": "https://openlibrary.org"
           }
         ]
       },
@@ -74,7 +74,7 @@
         "packageName": "kora.misc.mangazin",
         "resources": {
           "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/manga/mangazin.json",
-          "iconUrl": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/manga/icons/mangazin.png"
+          "iconUrl": ""
         },
         "extensionLib": "kora-1",
         "versionCode": "1000",

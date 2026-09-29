@@ -1,0 +1,37 @@
+{
+  "id": "kora-legal-gutenberg",
+  "name": "Project Gutenberg",
+  "lang": "en",
+  "version": 1,
+  "nsfw": false,
+  "kind": "book",
+  "api": "json",
+  "piracy": false,
+  "baseUrl": "https://gutendex.com",
+  "icon": "https://www.gutenberg.org/cache/epub/1342/pg1342.cover.medium.jpg",
+  "website": "https://www.gutenberg.org",
+  "description": "Project Gutenberg — over 75,000 public-domain eBooks, read via the Gutendex catalogue.",
+  "endpoints": {
+    "json": {
+      "search": {
+        "url": "/books?search={query}",
+        "path": "results",
+        "title": "title",
+        "url_": "id",
+        "author": "authors[].name",
+        "thumb": "formats.image/jpeg",
+        "description": "summaries[]",
+        "limit": 20
+      },
+      "details": {
+        "url": "/books?ids={mangaId}",
+        "path": "results",
+        "title": "title",
+        "author": "authors[].name",
+        "thumbnail": "formats.image/jpeg",
+        "description": "summaries[]",
+        "genres": "subjects[]"
+      }
+    }
+  }
+}
