@@ -44,6 +44,31 @@ and on a numeric id too long to survive JSON (see *Ids* below).
 
 ---
 
+## Icons — required, not optional
+
+Every source needs a **square PNG logo**, exactly as Tachiyomi ships one per
+extension. Without it a grid of sources is an undifferentiated row of the
+same placeholder, which is unusable when you are deciding whether to install
+something.
+
+```json
+{
+  "id": "kora-manga-example",
+  "name": "Example Manga",
+  "icon": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/icons/example.png"
+}
+```
+
+- Commit the file to `icons/`, 144×144 or larger, and point `icon` at its
+  raw URL.
+- A favicon is an acceptable fallback, but a committed PNG is better: no
+  hotlink risk, and no third party able to swap the image later.
+- If a ported extension already has one upstream, reuse it (the three manga
+  sources here came from Keiyoushi's `res/mipmap-xxhdpi/ic_launcher.png`).
+
+`npm run build:index` **warns** for any source with no `icon`. That warning
+is the reason this rule is enforced rather than merely documented.
+
 ## Madara sources (the big one)
 
 Most manga sites run the same WordPress plugin. Tachiyomi handles this with a
