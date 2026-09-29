@@ -44,6 +44,63 @@ and on a numeric id too long to survive JSON (see *Ids* below).
 
 ---
 
+## Madara sources (the big one)
+
+Most manga sites run the same WordPress plugin. Tachiyomi handles this with a
+shared base class: of 1,377 packages in the Keiyoushi registry, **248 extend
+`Madara`** and about 680 extend some shared theme. A site on that plugin
+costs a dozen lines, not a scraper.
+
+Kora ports that base class. A Madara source declares only a `baseUrl`:
+
+```json
+{
+  "id": "kora-manga-example",
+  "name": "Example Manga",
+  "lang": "en",
+  "version": 1,
+  "nsfw": false,
+  "piracy": true,
+  "kind": "manga",
+  "theme": "madara",
+  "baseUrl": "https://example.com"
+}
+```
+
+That is a complete, working source: popular, latest, search, details, chapters
+and page images. There are **no `endpoints`** — the theme supplies them.
+
+Override only what deviates:
+
+```jsonc
+{
+  "theme": "madara",
+  "baseUrl": "https://example.com",
+  "madara": {
+    "mangaSubString": "serie",     // listing lives at /serie/ not /manga/
+    "popularOrderBy": "views",
+    "latestOrderBy": "update",
+    "selectors": {
+      "listingCard": "div.page-item-detail.manga",
+      "chapterList": "li.wp-manga-chapter",
+      "pageList": "div.page-break"
+    }
+  }
+}
+```
+
+Defaults come from Keiyoushi's `MadaraBase.kt`. Ports are added to the engine
+rather than to each source, so a selector fix helps every site at once.
+
+**Adding a Madara site:** copy one of `sources/manga/*.json`, change
+`baseUrl`, `id` and `name`, then verify it before opening a PR. Listing,
+details, chapters *and* pages must all come back non-empty.
+
+```bash
+cd ../kora-repo
+npx tsx src/lib/sources/__tests__/verify-madara-live.mts   # after adding the site to the list
+```
+
 ## Writing a source
 
 Copy a working file and edit it. The smallest useful one is about twenty lines.
