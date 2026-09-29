@@ -1,0 +1,19 @@
+{
+  "id": "4503604002226619223",
+  "name": "ManhuaPlus",
+  "baseUrl": "https://manhuaplus.com",
+  "version": "1.0.0-alpha.92",
+  "lang": "en",
+  "theme": "madara",
+  "kind": "manga",
+  "piracy": true,
+  "nsfw": false,
+  "enabled": false,
+  "website": "https://manhuaplus.com",
+  "icon": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/manga/icons/manhuaplus.png",
+  "description": "ManhuaPlus — a Madara-hosted manga site, read through the shared Kora Madara engine.",
+  "madara": {
+    "mangaPath": "/manga/",
+    "popularPath": "/manga/?status=hot&page=1"
+  }
+}

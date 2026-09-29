@@ -58,11 +58,17 @@ for (const f of files) {
   // round trip — `Number("6289731484943315811")` collapses to ...6000, so the
   // id would differ between the registry and the installed copy. A string id
   // is exempt: it is stored verbatim.
-  const idStr = String(plugin.id);
-  if (/^\d+$/.test(idStr) && idStr.length > 17) {
+  //
+  // The check must look at the parsed *type*, not at the digits. Testing
+  // String(plugin.id) flags a correctly quoted id just the same, which made
+  // this reject four valid sources.
+  if (typeof plugin.id === "number" && String(plugin.id).length > 17) {
     problems.push(
-      `numeric id "${idStr}" is ${idStr.length} digits — JSON loses precision past 17; use a shorter number or quote it as a string`
+      `numeric id ${plugin.id} has ${String(plugin.id).length} digits — JSON loses precision past 17; quote the id as a string`
     );
+  }
+  if (typeof plugin.id !== "string" && typeof plugin.id !== "number") {
+    problems.push("id must be a string or a number");
   }
   if (problems.length) {
     console.error(`INVALID ${basename(f)}: ${problems.join("; ")}`);

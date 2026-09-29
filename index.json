@@ -49,18 +49,39 @@
         ]
       },
       {
-        "name": "Mangazin",
-        "packageName": "eu.kanade.tachiyomi.extension.en.mangazin",
+        "name": "Mangareadorg",
+        "packageName": "kora.misc.mangareadorg",
         "resources": {
-          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/manga/mangazin.json",
-          "iconUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/icons/mangazin.png"
+          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/manga/mangaread-org.json",
+          "iconUrl": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/manga/icons/mangaread-org.png"
         },
         "extensionLib": "kora-1",
         "versionCode": "1000",
         "versionName": "1.0.0",
         "sources": [
           {
-            "id": "kora-manga-mangazin",
+            "id": "4503604002548978580",
+            "name": "MangaReadOrg",
+            "language": "en",
+            "piracy": true,
+            "nsfw": false,
+            "homeUrl": "https://mangaread.org"
+          }
+        ]
+      },
+      {
+        "name": "Mangazin",
+        "packageName": "kora.misc.mangazin",
+        "resources": {
+          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/manga/mangazin.json",
+          "iconUrl": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/manga/icons/mangazin.png"
+        },
+        "extensionLib": "kora-1",
+        "versionCode": "1000",
+        "versionName": "1.0.0",
+        "sources": [
+          {
+            "id": "4503604003186470944",
             "name": "MangaZin",
             "language": "en",
             "piracy": true,
@@ -87,6 +108,48 @@
             "piracy": true,
             "nsfw": false,
             "homeUrl": "https://manhuahot.com"
+          }
+        ]
+      },
+      {
+        "name": "Manhuaplus",
+        "packageName": "kora.misc.manhuaplus",
+        "resources": {
+          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/manga/manhuaplus.json",
+          "iconUrl": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/manga/icons/manhuaplus.png"
+        },
+        "extensionLib": "kora-1",
+        "versionCode": "1000",
+        "versionName": "1.0.0",
+        "sources": [
+          {
+            "id": "4503604002226619223",
+            "name": "ManhuaPlus",
+            "language": "en",
+            "piracy": true,
+            "nsfw": false,
+            "homeUrl": "https://manhuaplus.com"
+          }
+        ]
+      },
+      {
+        "name": "Manhuaus",
+        "packageName": "kora.misc.manhuaus",
+        "resources": {
+          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/manga/manhuaus.json",
+          "iconUrl": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/manga/icons/manhuaus.png"
+        },
+        "extensionLib": "kora-1",
+        "versionCode": "1000",
+        "versionName": "1.0.0",
+        "sources": [
+          {
+            "id": "4503604002575350979",
+            "name": "Manhuaus",
+            "language": "en",
+            "piracy": true,
+            "nsfw": false,
+            "homeUrl": "https://manhuaus.com"
           }
         ]
       },

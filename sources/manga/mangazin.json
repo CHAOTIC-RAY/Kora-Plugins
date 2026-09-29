@@ -1,26 +1,19 @@
 {
-  "id": "kora-manga-mangazin",
+  "id": "4503604003186470944",
   "name": "MangaZin",
-  "lang": "en",
-  "version": 1,
-  "nsfw": false,
-  "piracy": true,
-  "kind": "manga",
-  "theme": "madara",
   "baseUrl": "https://mangazin.org",
-  "icon": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/icons/mangazin.png",
-  "gen2": {
-    "packageName": "eu.kanade.tachiyomi.extension.en.mangazin",
-    "versionName": "1.4.9",
-    "versionCode": "19",
-    "homeUrl": "https://mangazin.org"
-  },
-  "headers": {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
-  },
+  "version": "1.0.0-alpha.92",
+  "lang": "en",
+  "theme": "madara",
+  "kind": "manga",
+  "piracy": true,
+  "nsfw": false,
+  "enabled": false,
+  "website": "https://mangazin.org",
+  "icon": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/manga/icons/mangazin.png",
+  "description": "MangaZin — a Madara-hosted manga site, read through the shared Kora Madara engine.",
   "madara": {
-    "mangaSubString": "manga",
-    "popularOrderBy": "views",
-    "latestOrderBy": "update"
+    "mangaPath": "/manga/",
+    "popularPath": "/manga/?status=hot&page=1"
   }
 }

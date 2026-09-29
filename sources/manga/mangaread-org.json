@@ -1,0 +1,19 @@
+{
+  "id": "4503604002548978580",
+  "name": "MangaReadOrg",
+  "baseUrl": "https://mangaread.org",
+  "version": "1.0.0-alpha.92",
+  "lang": "en",
+  "theme": "madara",
+  "kind": "manga",
+  "piracy": true,
+  "nsfw": false,
+  "enabled": false,
+  "website": "https://mangaread.org",
+  "icon": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/manga/icons/mangaread-org.png",
+  "description": "MangaReadOrg — a Madara-hosted manga site, read through the shared Kora Madara engine.",
+  "madara": {
+    "mangaPath": "/manga/",
+    "popularPath": "/manga/?status=hot&page=1"
+  }
+}

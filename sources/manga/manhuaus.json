@@ -1,0 +1,19 @@
+{
+  "id": "4503604002575350979",
+  "name": "Manhuaus",
+  "baseUrl": "https://manhuaus.com",
+  "version": "1.0.0-alpha.92",
+  "lang": "en",
+  "theme": "madara",
+  "kind": "manga",
+  "piracy": true,
+  "nsfw": false,
+  "enabled": false,
+  "website": "https://manhuaus.com",
+  "icon": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/manga/icons/manhuaus.png",
+  "description": "Manhuaus — a Madara-hosted manga site, read through the shared Kora Madara engine.",
+  "madara": {
+    "mangaPath": "/manga/",
+    "popularPath": "/manga/?status=hot&page=1"
+  }
+}
