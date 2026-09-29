@@ -47,6 +47,69 @@
             "homeUrl": "https://openlibrary.org"
           }
         ]
+      },
+      {
+        "name": "Mangazin",
+        "packageName": "eu.kanade.tachiyomi.extension.en.mangazin",
+        "resources": {
+          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/manga/mangazin.json",
+          "iconUrl": ""
+        },
+        "extensionLib": "kora-1",
+        "versionCode": "1000",
+        "versionName": "1.0.0",
+        "sources": [
+          {
+            "id": "kora-manga-mangazin",
+            "name": "MangaZin",
+            "language": "en",
+            "piracy": true,
+            "nsfw": false,
+            "homeUrl": "https://mangazin.org"
+          }
+        ]
+      },
+      {
+        "name": "Manhuahot",
+        "packageName": "eu.kanade.tachiyomi.extension.en.manhuahot",
+        "resources": {
+          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/manga/manhuahot.json",
+          "iconUrl": ""
+        },
+        "extensionLib": "kora-1",
+        "versionCode": "1000",
+        "versionName": "1.0.0",
+        "sources": [
+          {
+            "id": "kora-manga-manhuahot",
+            "name": "ManhwaHot",
+            "language": "en",
+            "piracy": true,
+            "nsfw": false,
+            "homeUrl": "https://manhuahot.com"
+          }
+        ]
+      },
+      {
+        "name": "S2read",
+        "packageName": "eu.kanade.tachiyomi.extension.en.s2read",
+        "resources": {
+          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/manga/s2read.json",
+          "iconUrl": ""
+        },
+        "extensionLib": "kora-1",
+        "versionCode": "1000",
+        "versionName": "1.0.0",
+        "sources": [
+          {
+            "id": "kora-manga-s2read",
+            "name": "S2Read",
+            "language": "en",
+            "piracy": true,
+            "nsfw": false,
+            "homeUrl": "https://s2read.com"
+          }
+        ]
       }
     ]
   }

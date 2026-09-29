@@ -1,0 +1,25 @@
+{
+  "id": "kora-manga-mangazin",
+  "name": "MangaZin",
+  "lang": "en",
+  "version": 1,
+  "nsfw": false,
+  "piracy": true,
+  "kind": "manga",
+  "theme": "madara",
+  "baseUrl": "https://mangazin.org",
+  "gen2": {
+    "packageName": "eu.kanade.tachiyomi.extension.en.mangazin",
+    "versionName": "1.4.9",
+    "versionCode": "19",
+    "homeUrl": "https://mangazin.org"
+  },
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+  },
+  "madara": {
+    "mangaSubString": "manga",
+    "popularOrderBy": "views",
+    "latestOrderBy": "update"
+  }
+}
