@@ -65,8 +65,8 @@
         ]
       },
       {
-        "name": "Send To Kindle",
-        "packageName": "kora.integration.send-to-kindle",
+        "name": "Send To Kobo Kindle",
+        "packageName": "kora.integration.send-to-kobo-kindle",
         "resources": {
           "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/integrations/send-to-kindle.json",
           "iconUrl": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/integrations/icons/send-to-kindle.png"
@@ -77,7 +77,7 @@
         "sources": [
           {
             "id": "kora-integration-kindle",
-            "name": "Send to Kindle",
+            "name": "Send to Kobo/Kindle",
             "language": "en",
             "piracy": false,
             "nsfw": false,
@@ -88,7 +88,7 @@
             "requires": [
               "permission"
             ],
-            "description": "Reads from a Calibre library that you feed from Send to Kindle. Direct upload from Kora to an Amazon device is NOT implemented — see the note below.",
+            "description": "Send a book to your Kobo or Kindle. Three routes: upload to a Send-to-Kindle server you choose, hand off to croc, or open Amazon's official Send to Kindle page. Your own key or server address; no credentials are shipped.",
             "author": "Kora",
             "homeUrl": "https://www.amazon.com/sendtokindle"
           }

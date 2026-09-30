@@ -1,7 +1,7 @@
 {
   "id": "kora-integration-kindle",
-  "name": "Send to Kindle",
-  "version": 1,
+  "name": "Send to Kobo/Kindle",
+  "version": 2,
   "category": "integration",
   "target": "kindle",
   "lang": "en",
@@ -10,7 +10,7 @@
   "author": "Kora",
   "icon": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/integrations/icons/send-to-kindle.png",
   "website": "https://www.amazon.com/sendtokindle",
-  "description": "Reads from a Calibre library that you feed from Send to Kindle. Direct upload from Kora to an Amazon device is NOT implemented — see the note below.",
+  "description": "Send a book to your Kobo or Kindle. Three routes: upload to a Send-to-Kindle server you choose, hand off to croc, or open Amazon's official Send to Kindle page. Your own key or server address; no credentials are shipped.",
   "availability": "unavailable",
   "availabilityNote": "NOT YET FUNCTIONAL. Uploading to a Kindle requires Amazon's KDP Personal Document Service, which is gated behind an Amazon-approved developer account. Amazon does not issue these tokens to third-party apps, and there is no user-supplied-credential path that works. This plugin therefore installs, and shows you how to use Calibre's own Send to Kindle plugin instead, but it will not claim to have sent anything. No upload is attempted and no success is ever reported.",
   "requires": [
