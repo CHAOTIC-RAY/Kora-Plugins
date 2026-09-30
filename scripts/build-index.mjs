@@ -67,7 +67,7 @@ function validateTheme(plugin, problems) {
 function validateIntegration(plugin, problems) {
   if (!plugin.target) {
     problems.push("integration is missing target");
-  } else if (!["kindle", "calibre"].includes(plugin.target)) {
+  } else if (!["kindle", "calibre", "croc"].includes(plugin.target)) {
     problems.push(`unknown integration target "${plugin.target}"`);
   }
   // An integration that cannot work must say so, rather than shipping an

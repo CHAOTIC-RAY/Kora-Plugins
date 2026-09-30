@@ -1,0 +1,20 @@
+{
+  "id": "kora-integration-croc",
+  "name": "croc",
+  "version": 1,
+  "category": "integration",
+  "target": "croc",
+  "lang": "en",
+  "nsfw": false,
+  "piracy": false,
+  "author": "Kora",
+  "icon": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/integrations/icons/croc.png",
+  "website": "https://github.com/schollz/croc",
+  "description": "Receive a file on this device with croc, the open-source command-line transfer tool by Zack Scholl (MIT). Run `croc send book.epub` on your laptop, type the three-word code it prints, and the file comes here. Receiving only in this release; sending from Kora is not implemented. Honest limits: only the last two of the three words are secret, which is about 20.7 bits — the first word is a room name the relay can see — and the relay connection uses a hardcoded public key, so the relay operator can see which rooms exist, when, and how large the transfers are, though not the file contents. A malicious sender can also try to attack the receiving filesystem (croc has published four advisories of exactly that kind), so only accept codes from someone you trust. Kora writes no croc code; croc and its EFF wordlist (CC BY 4.0) and vendored Tailcat (BSD-3-Clause) are not bundled. See NOTICE.md.",
+  "availability": "ready",
+  "requires": [
+    "network"
+  ],
+  "readable": true,
+  "readableCheckedAt": "2026-09-30T08:14:31.034Z"
+}

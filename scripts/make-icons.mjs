@@ -33,6 +33,7 @@ const ICONS = [
   { path: "sources/themes/icons/mint-terminal.png", bg: "#0C1410", fg: "#D6F5E0", accent: "#4ADE80", glyph: "prompt" },
   { path: "sources/integrations/icons/calibre.png", bg: "#2B2118", fg: "#F3E9D8", accent: "#D08C3C", glyph: "books" },
   { path: "sources/integrations/icons/send-to-kindle.png", bg: "#23262B", fg: "#E8EAED", accent: "#9AA3AE", glyph: "device" },
+  { path: "sources/integrations/icons/croc.png", bg: "#12211B", fg: "#DCF5E6", accent: "#3FBF87", glyph: "transfer" },
 ];
 
 const SIZE = 256;
@@ -57,6 +58,14 @@ function svg({ bg, fg, accent, glyph }) {
       <rect x="92" y="66" width="72" height="124" rx="10" fill="${fg}"/>
       <rect x="104" y="80" width="48" height="80" rx="4" fill="${bg}"/>
       <circle cx="128" cy="174" r="8" fill="${accent}"/>`,
+    // Two arrows between two endpoints: a transfer, in the direction a receive
+    // actually goes (down into the device on the right).
+    transfer: `
+      <circle cx="76" cy="128" r="20" fill="${accent}"/>
+      <path d="M112 128 H156" stroke="${fg}" stroke-width="12" stroke-linecap="round"/>
+      <path d="M150 106 L176 128 L150 150 Z" fill="${fg}"/>
+      <rect x="188" y="88" width="42" height="80" rx="9" fill="${fg}"/>
+      <circle cx="209" cy="152" r="5" fill="${accent}"/>`,
   };
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${SIZE}" height="${SIZE}" viewBox="0 0 ${SIZE} ${SIZE}">
     <rect width="${SIZE}" height="${SIZE}" rx="52" fill="${bg}"/>

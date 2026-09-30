@@ -11,9 +11,10 @@ bundled or executed, so a source cannot do anything a plain HTTP request could
 not. That is the whole trust model.
 
 > **A source is one category of plugin.** Kora's plugin system also covers
-> themes, library integrations (Kindle, Calibre) and tools. Those categories
-> are declared in the app's `PluginManifest` but have no engine yet, so this
-> repository currently ships sources only.
+> themes, library integrations (Kindle, Calibre, croc) and tools. Those
+> categories are declared in the app's `PluginManifest`; the sources here are
+> JSON definitions, while the integration plugins carry their runtime in the app
+> (see [croc](#croc--receive-a-file-from-a-laptop)).
 
 ---
 
@@ -403,6 +404,92 @@ Two failure modes worth knowing, because they look identical in code:
 
 Please only add sources you have actually tested. A source that silently returns
 the wrong book is worse than no source at all.
+
+---
+
+## croc — receive a file from a laptop
+
+`sources/integrations/croc.json` is an **integration** plugin, not a source. It
+has no engine in this repository: like Kindle and Calibre, its runtime lives in
+the app (`kora-repo/src/lib/croc/`), and this file is the manifest that installs
+and configures it.
+
+It wraps [croc](https://github.com/schollz/croc), an open-source command-line
+file transfer tool by Zack Scholl.
+
+### What it does
+
+Receiving, only. You run `croc send book.epub` on your laptop, it prints a
+three-word code, you type that into the panel, and the file comes to the device
+Kora is on. Sending *from* Kora is deliberately not implemented: it needs an
+upload path, and a browser cannot bundle a folder into one file, so a Send
+button would be a button that cannot do what it says.
+
+### Why it hands off instead of transferring in-app
+
+croc's browser peer is real — the actual Go cryptography (PAKE, AES-GCM, the
+wordlist) compiled to WebAssembly — and upstream tests it byte-for-byte against
+the CLI. But that build is not published to npm. It is produced by
+`make build-web` into `src/webassets/dist`, which is gitignored, and the public
+copy at `getcroc.com/croc.wasm` is served **without** `Access-Control-Allow-Origin`,
+so a page on another origin cannot load it. Rebuilding needs the Go 1.27
+toolchain, which is not a build input of this app.
+
+So the panel parses and validates your code locally, tells you exactly which word
+is the room selector and which two carry the secret, and then hands the receive
+to croc's own web client, which does have the WASM. That handoff is verified
+working: `https://getcroc.com/?code=<code>` prefills the receive field and
+starts the PAKE handshake on its own.
+
+The panel says **"In-app WASM peer support: not yet available"** in the UI rather
+than hiding the limitation. A clearly-labelled partial feature is acceptable
+here; a silently broken one is not.
+
+### Self-hosting the relay
+
+Kora runs on Cloudflare Workers, which can open outbound TCP but can never
+listen on one. So Kora can be a croc **client** and never the **relay**. Leave
+the relay field empty to use the public pool (`1`–`4.getcroc.com:9009`), or run
+your own — `croc relay` is a single self-hostable binary, ports 9009–9013, no
+TLS needed, password from `CROC_PASS`. The panel generates the exact command
+from what you type. If you also run `croc-web`, point the panel at it and the
+handoff stays on your own infrastructure.
+
+### The security facts, which are also on screen
+
+These are in the manifest description and the panel UI on purpose, because they
+change what a user should do:
+
+- **The code is about 20.7 bits of secret.** croc codes are three words from a
+  1296-word list, which invites the `log2(1296³) ≈ 31` figure — and that is the
+  wrong number. The first word is a *room selector* and is public to the relay.
+  Only words 2–3 are secret: `1296² ≈ 20.7` bits. Do not reuse a code.
+- **The relay hop uses a hardcoded public key.** The relay operator can read the
+  control channel and see room names, timing and transfer sizes. It cannot read
+  file contents and cannot impersonate a peer; payloads are AES-256-GCM keyed
+  from the two-word PAKE password.
+- **A malicious sender can attack the receiving device.** croc's recent
+  advisories are all this one class, not a cryptographic weakness: path
+  traversal, symlink overwrite, and a case-insensitive bypass of the `.ssh`
+  guard (GHSA-wmw5-q587-gx56, GHSA-m6m7-376m-rr8g, GHSA-pcm6-vvg3-3xmh,
+  GHSA-x89h-7h96-v88f). Kora sanitises every sender-supplied filename as a
+  result, and the sanitiser is tested against each of those four shapes. Only
+  accept codes from someone you trust.
+- **Version pinning is fail-closed.** `pakekey.ProtocolVersion` rejects a
+  mismatched peer. Kora targets croc v11.x; v9/v10 codes parse as legacy byte
+  strings but will not complete a v11 handshake.
+- **Browsers cannot send a folder.** There is no directory send and no ZIP
+  creation, which is part of why this is receive-only.
+
+### Attribution
+
+Kora vendors **no croc code** — not the Go source, not the WebAssembly, not the
+wordlist. croc is MIT (Copyright (c) 2017-2025 Zack Scholl); its EFF Short
+Wordlist #1 is CC BY 4.0 and its vendored Tailcat/Tailscale is BSD-3-Clause.
+All three require attribution, which is why there is a dedicated
+[`NOTICE.md`](NOTICE.md) alongside the original `NOTICE`. Kora's own plugin code
+re-derives two protocol facts from upstream source rather than copying it: the
+code's word structure, and the `sha256(roomSelector + "croc")` room derivation.
 
 ---
 
