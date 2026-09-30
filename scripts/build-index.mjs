@@ -196,9 +196,12 @@ function iconFor(group) {
  * which drives the same parser the app reads with. Stamps written here are
  * the input; run that script with --write to refresh them.
  *
- * KORA_STRICT_READABLE=1 turns the warning into a hard failure, for CI.
+ * KORA_STRICT_READABLE=1 (or `--strict`) turns the warning into a hard
+ * failure, for CI. The flag exists because `KORA_STRICT_READABLE=1 node ...`
+ * is not a valid npm script on Windows, and the gate must be runnable from
+ * `npm run verify` on every machine.
  */
-const STRICT = process.env.KORA_STRICT_READABLE === "1";
+const STRICT = process.env.KORA_STRICT_READABLE === "1" || process.argv.includes("--strict");
 const unreadable = [];
 for (const g of plugins) {
   if ((g.category || "source") !== "source") continue;
@@ -208,8 +211,8 @@ for (const g of plugins) {
   } else if (g.readable === undefined) {
     console.warn(
       `warn  ${g.name}: readability never verified — run ` +
-        `node scripts/verify-readable.mjs from kora-repo, or this source is ` +
-        `published on trust`
+        `\`npm run verify:readable\` (needs the kora-repo checkout, see README) ` +
+        `or this source is published on trust`
     );
   }
 }

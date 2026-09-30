@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "updatedAt": "2026-09-30T07:19:54.577Z",
+  "note": "One entry per source per changed run, oldest first, capped at 8. Produced by scripts/verify-readable.mjs. A source that flips readable <-> unreadable shows up here as a diff; that is the point.",
+  "sources": {
+    "4503604002226619223": [
+      {
+        "at": "2026-09-30T07:19:03.385Z",
+        "verdict": "readable",
+        "stage": "ok",
+        "detail": "12 pages in \"Chapter 3862\", image/jpeg"
+      }
+    ],
+    "4503604002548978580": [
+      {
+        "at": "2026-09-30T07:18:47.965Z",
+        "verdict": "readable",
+        "stage": "ok",
+        "detail": "54 pages in \"Chapter 3862\", image/gif"
+      }
+    ],
+    "4503604002575350979": [
+      {
+        "at": "2026-09-30T07:19:07.256Z",
+        "verdict": "unreadable",
+        "stage": "panels",
+        "detail": "panel not served for 3 chapter(s)"
+      }
+    ],
+    "4503604003186470944": [
+      {
+        "at": "2026-09-30T07:18:52.832Z",
+        "verdict": "unreadable",
+        "stage": "panels",
+        "detail": "panel not served for 3 chapter(s)"
+      }
+    ],
+    "kora-manga-manhuahot": [
+      {
+        "at": "2026-09-30T07:18:59.680Z",
+        "verdict": "readable",
+        "stage": "ok",
+        "detail": "8 pages in \"Chap 412\", image/jpeg"
+      }
+    ],
+    "kora-manga-s2read": [
+      {
+        "at": "2026-09-30T07:19:10.047Z",
+        "verdict": "readable",
+        "stage": "ok",
+        "detail": "11 pages in \"Chapter 168\", image/jpeg"
+      }
+    ]
+  }
+}

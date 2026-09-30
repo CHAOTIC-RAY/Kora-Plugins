@@ -1,0 +1,44 @@
+#!/bin/sh
+#
+# Kora-Sources pre-commit hook.
+#
+# Enable once per clone, after cloning:
+#
+#     git config core.hooksPath .githooks
+#
+# That is deliberate rather than a `prepare` script or a husky dependency: the
+# registry has no runtime dependencies and no build step, and a JSON data repo
+# should not acquire a toolchain because of a 10-line guard. core.hooksPath is
+# git's own mechanism, it is one command, and if a contributor skips it the CI
+# gate in .github/workflows/registry.yml still runs the real check.
+#
+# CI is the actual enforcement. This is the fast local warning that saves you a
+# round trip.
+#
+set -e
+
+repo_root=$(git rev-parse --show-toplevel)
+cd "$repo_root"
+
+# Skip during automated operations and rebases -- a hook that blocks `git pull
+# --rebase` or CI checkout noise helps nobody.
+if [ "$CI" = "true" ] || [ -n "$HUSKY" ] || [ -n "$SKIP_STAMP_HOOK" ]; then
+  exit 0
+fi
+
+# During a rebase, git sets GIT_DIR to .git/rebase-merge. Failing mid-rebase
+# leaves the contributor in a worse state than not checking at all.
+if [ -d "$(git rev-parse --git-dir)/rebase-merge" ] ||
+   [ -d "$(git rev-parse --git-dir)/rebase-apply" ]; then
+  exit 0
+fi
+
+if ! node scripts/check-stamps.mjs; then
+  echo ""
+  echo "commit aborted. To verify readability now, run: npm run verify:readable"
+  echo "To commit anyway (CI will still fail on an unreadable source):"
+  echo "  SKIP_STAMP_HOOK=1 git commit"
+  exit 1
+fi
+
+exit 0

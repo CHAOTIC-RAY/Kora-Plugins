@@ -6,6 +6,10 @@
   "license": "Apache-2.0",
   "scripts": {
     "build:index": "node scripts/build-index.mjs",
-    "verify": "node scripts/verify-sources.mts"
+    "verify": "node scripts/build-index.mjs --strict",
+    "verify:readable": "node scripts/verify-readable.mjs",
+    "verify:index": "node scripts/verify-index.mjs",
+    "check:stamps": "node scripts/check-stamps.mjs",
+    "preversion": "npm run verify:index && npm run verify"
   }
 }

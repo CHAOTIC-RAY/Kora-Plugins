@@ -1,0 +1,155 @@
+name: registry
+
+# Two triggers, two purposes:
+#   on: push   — someone just added or changed a source; prove it still works.
+#   schedule  — sources rot. A site can go down, change theme, or start
+#               serving a paywall without anyone touching this repo. Weekly is
+#               often enough to catch that before 3,000 users hit it, rare
+#               enough not to hammer someone else's site.
+#
+# WHAT A GREEN RUN PROVES, PRECISELY
+# ----------------------------------
+# Green means: at the moment the workflow ran, the sources this registry lists
+# as `readable: true` each still returned a real page image from the Kora
+# Worker's cache of a live fetch of a real chapter. The check drives the app's
+# actual Madara parser, so a green run does mean the app can read them.
+#
+# WHAT GREEN DOES NOT PROVE — read this before trusting it:
+#   * Not that a source is the *best* source for its site. One chapter per
+#     source is sampled. A site can serve chapter 3862 fine and chapter 12 as a
+#     paywall.
+#   * Not that the site is reachable for a normal user. The Worker relay is
+#     public and unauthenticated; a source that blocks datacenter IPs but not
+#     residential ones passes here and fails in the app.
+#   * Not that the registry is complete or correct. Nothing here validates
+#     icons, licences, ids, or that the selectors pick the *right* title.
+#   * Not that a source is safe. Readability is a reachability check. It says
+#     nothing about whether the site is legal, and it never will.
+#   * Not that a source is permanently readable. That is the whole reason this
+#     runs on a schedule and appends to readable-history.json.
+#   * Sources with no `readable` stamp are only WARNED about, not failed —
+#     except that the stamped-unreadable count is checked below, so a source
+#     cannot regress into shipping unverified without the history showing it.
+#
+# EXPECTED CURRENT STATE: this workflow FAILS on push, because MangaZin and
+# Manhuaus are stamped `readable: false` — they list chapters and then serve
+# no page images. That is the gate working. They are pending a decision (fix
+# or remove), not a bug in this file. Do not "fix" the workflow by deleting
+# those two sources without deciding; do not relax the gate to make it green.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sources/**'
+      - 'scripts/**'
+      - 'index.json'
+      - '.github/workflows/registry.yml'
+  schedule:
+    # Mondays 06:17 UTC. An off-the-hour minute keeps this off the top-of-hour
+    # rush that every scheduled workflow on GitHub lands on.
+    - cron: '17 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: registry-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  readability:
+    # The live sites do not care that you are CI. Serial, with room to breathe.
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      # The registry itself. No path: it becomes the workspace root, because
+      # every command below reads sources/ from here.
+      - uses: actions/checkout@v4
+
+      # The app, because the readability check must drive the app's real Madara
+      # parser — a gate that reimplements scraping drifts from the app and
+      # eventually passes things the app cannot read. This is the reason the
+      # verifier lives in kora-repo and not here.
+      - uses: actions/checkout@v4
+        with:
+          repository: CHAOTIC-RAY/Kora-
+          path: kora-app
+
+      # The verifier is a .mts file importing app internals, so it needs tsx and
+      # the app's dependencies. No secrets: everything goes through the public
+      # Worker relay.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: kora-app/package-lock.json
+
+      - name: Install verifier dependencies
+        working-directory: kora-app
+        run: npm ci --ignore-scripts
+
+      # Prefer the workflow's own definitions: this workflow must gate the
+      # commit that is being tested, not whatever main looks like right now.
+      - name: Verify readability
+        env:
+          KORA_REPO_DIR: ${{ github.workspace }}/kora-app
+          KORA_SOURCES_DIR: ${{ github.workspace }}/sources
+        run: node scripts/verify-readable.mjs
+        # Expected to fail while MangaZin and Manhuaus are stamped unreadable.
+        # Everything below runs anyway on a failure so the report is complete.
+        continue-on-error: true
+
+      - name: Record the readability history
+        if: always()
+        run: |
+          if [ -f readable-history.json ]; then
+            {
+              echo "### Readability"
+              echo
+              echo '```json'
+              cat readable-history.json
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Refuse a green run that checked nothing
+        if: always()
+        # The verifier writes its report into the app checkout. A run that found
+        # no sources writes no history, and would otherwise look identical to a
+        # run where every source passed. That is the failure mode this whole
+        # workflow exists to avoid, so it gets its own explicit check.
+        run: |
+          if [ ! -f readable-history.json ]; then
+            echo "::error::readable-history.json was not written — the verifier did not check this registry"
+            exit 1
+          fi
+          n=$(node -e "const h=require('./readable-history.json');console.log(Object.values(h.sources).flat().filter(v=>v.verdict==='unreadable').length)")
+          echo "sources with an unreadable verdict on record: $n"
+          if [ "$n" -gt 0 ]; then
+            echo "::error::$n source(s) cannot serve a page image. See readable-history.json in the summary."
+          fi
+
+      - name: Build the registry in strict mode
+        # The gate proper: refuses to publish a source that cannot serve a page
+        # image. Non-strict build runs first so the two failure modes stay
+        # distinguishable.
+        run: |
+          node scripts/build-index.mjs
+          echo "--- strict ---"
+          node scripts/build-index.mjs --strict
+
+      - name: Check every published URL resolves
+        run: node scripts/verify-index.mjs
+
+      - name: Upload the report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: registry-report
+          path: |
+            readable-history.json
+            index.json
+          if-no-files-found: error

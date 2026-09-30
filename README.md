@@ -51,13 +51,17 @@ Plugins tab. That is how third-party source collections are added.
 
 ```
 index.json          generated registry — do not hand-edit
+readable-history.json   per-source readability verdicts over time
 sources/
   legal/            public-domain and open-licence sources
   manga/            manga and comics
   comics/
 scripts/
-  build-index.mjs   regenerates index.json from sources/**
-  verify-index.mjs  fetches every published definition + icon
+  build-index.mjs      regenerates index.json from sources/**
+  verify-readable.mjs  runs the live readability check, stamps + records history
+  check-stamps.mjs     pre-commit guard: no source ships unverified
+  verify-index.mjs     fetches every published definition + icon
+.githooks/pre-commit   enabled with `git config core.hooksPath .githooks`
 ```
 
 `index.json` is generated. Edit the source files, then run:
@@ -103,7 +107,9 @@ something.
   sources here came from Keiyoushi's `res/mipmap-xxhdpi/ic_launcher.png`).
 
 `npm run build:index` **warns** for any source with no `icon`. That warning
-is the reason this rule is enforced rather than merely documented.
+is the reason this rule is enforced rather than merely documented. The
+pre-commit hook additionally blocks a source that has no `readable` stamp —
+see *Adding a source, start to finish*.
 
 ## Why so few sites ship
 
@@ -179,12 +185,9 @@ rather than to each source, so a selector fix helps every site at once.
 
 **Adding a Madara site:** copy one of `sources/manga/*.json`, change
 `baseUrl`, `id` and `name`, then verify it before opening a PR. Listing,
-details, chapters *and* pages must all come back non-empty.
-
-```bash
-cd ../kora-repo
-npx tsx src/lib/sources/__tests__/verify-madara-live.mts   # after adding the site to the list
-```
+details, chapters *and* pages must all come back non-empty — `npm run
+verify:readable` checks exactly that, using the app's own parser. Full loop
+in *Adding a source, start to finish* below.
 
 ## Writing a source
 
@@ -339,12 +342,19 @@ this reason.
 
 ## Testing a source
 
-The fastest loop is to verify against the live API before opening a PR:
+The fastest loop is to verify against the live API before opening a PR.
+From this repo, one command does it — it finds the kora-repo checkout itself
+and drives the app's real parser:
 
 ```bash
-cd ../kora-repo
-SOURCES_DIR=D:/Wafig/Hermes/Kora-Sources/sources \
-  npx tsx src/lib/sources/__tests__/verify-live.mts
+npm run verify:readable            # every source
+npm run verify:readable my-site    # just the one you added
+```
+
+If kora-repo is not a sibling checkout, point at it:
+
+```bash
+KORA_REPO_DIR=/path/to/kora-repo npm run verify:readable
 ```
 
 It runs every source through the real runtime and reports the first result it
@@ -429,14 +439,14 @@ below, which drives the same parser the app reads with, and are stamped into
 each definition as `readable` / `readableNote`:
 
 ```bash
-# from kora-repo — re-verify every source and refresh the stamps
-node node_modules/tsx/dist/cli.mjs scripts/verify-registry-readable.mts --write
+# re-verify every source against its live site, refresh the stamps + history
+npm run verify:readable
 
-# from here — build the index; unreadable sources are reported
-node scripts/build-index.mjs
+# build the index; unreadable sources are reported but not fatal
+npm run build:index
 
-# in CI — make it fatal
-KORA_STRICT_READABLE=1 node scripts/build-index.mjs
+# the gate — fatal on any unreadable source. This is what CI runs.
+npm run verify
 ```
 
 The check walks the real chain a reader takes — listing, details, chapters,
@@ -446,9 +456,124 @@ images and then refuses — a defect) from **unreachable** (dead host, TLS
 failure, timeout — not a defect), because conflating them makes a flaky
 network fail the build.
 
-The verification lives in kora-repo rather than here on purpose. An earlier
-version re-implemented listing and chapter parsing in this repo and
+The verification *logic* lives in kora-repo rather than here on purpose. An
+earlier version re-implemented listing and chapter parsing in this repo and
 disagreed with itself within one run — it passed S2Read and ManhuaPlus with
 a loose test, then failed both once the test was tightened. A gate that
 re-implements the thing it gates drifts from it, and a gate that gives the
 wrong answer gets switched off.
+
+What lives *here* is `scripts/verify-readable.mjs`: it finds the kora-repo
+checkout, points the verifier at this registry, records the verdicts in
+`readable-history.json`, and fails loudly if the verifier did not actually
+check this registry. Run that script, not the kora-repo one — it is the entry
+point that works on CI and on a machine that is not mine.
+
+---
+
+## Adding a source, start to finish
+
+This is the whole loop. Nothing else is required.
+
+**1. Get the kora-repo checkout next to this one.** The readability check
+drives the app's real parser, so the app has to be present. Either clone it
+as a sibling directory, or point at it explicitly:
+
+```bash
+git clone https://github.com/CHAOTIC-RAY/Kora- ../kora-repo
+cd ../kora-repo && npm install      # tsx is required; the verifier is a .mts file
+```
+
+**2. Write the definition.** Copy the closest existing file and change it. A
+Madara site is about twelve lines — see *Madara sources* above:
+
+```bash
+cp sources/manga/s2read.json sources/manga/my-site.json
+```
+
+At minimum it needs `id`, `name`, `lang`, `baseUrl` and `kind`. Do not add
+`readable` yourself — step 3 writes it, and a value you invented is a claim
+you did not check.
+
+**3. Verify it against the live site.** This hits the real site, so it takes
+about ten seconds per source:
+
+```bash
+npm run verify:readable            # all sources
+npm run verify:readable my-site    # just this one
+```
+
+A new source that is not reachable from your machine reports **unreachable**,
+which is not a pass. You need a machine that can reach the site, or you need to
+say in the PR that you could not check it.
+
+**4. Build and confirm the gate's opinion.**
+
+```bash
+npm run verify     # strict: exits 1 if anything is unreadable
+npm run verify:index   # every published URL actually resolves
+```
+
+**5. Commit.** With the hook enabled, a source without a `readable` stamp
+cannot be committed. Enable it once per clone:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+**6. CI does the real check.** `.github/workflows/registry.yml` runs the same
+verifier and the same strict build on every push that touches `sources/`, and
+weekly on a schedule — because sources rot on their own, without a commit.
+
+### What the gate does, and what it does not
+
+A green run means the sources stamped `readable: true` each served a real page
+image at that moment, through the app's own parser. It does **not** mean:
+
+- the site is reachable for a normal user — the check goes through the public
+  Worker relay, so a site that blocks datacenter IPs but not residential ones
+  passes here and fails in the app;
+- the source is the best one for that site — one chapter is sampled;
+- anything about legality. This is a reachability check, nothing more.
+
+A green run is evidence, not a certificate. That is why the workflow says so
+in its own header, and why the history file exists.
+
+## When a source fails
+
+A source that lists series and chapters but serves no page image is the exact
+shape of the bug worth catching: a perfect grid, real chapter counts, and then
+a black rectangle for the user. It is the reason the gate exists.
+
+There are three failures, and they are not the same thing:
+
+| Failure | Means | What to do |
+|---|---|---|
+| `unreadable` | Site works, images do not come back | **Fix the `pageList` selector**, or drop the source. Do not ship it. |
+| `unreachable` | Dead host, TLS error, timeout, or blocked from here | Not the source's fault. Leave the stamp alone and try again later or from elsewhere. |
+| No `readable` stamp | Never verified | The build warns. `npm run verify:readable` to fix. |
+
+**Currently failing, and deliberately so:** MangaZin and Manhuaus are stamped
+`readable: false` — valid icon, correct Gen 2 shape, live listings, hundreds of
+chapters, and HTTP 404 for every panel. They are still in `index.json` because
+the build reports rather than refuses, and because whether to fix the selector
+or drop them is a decision, not a side effect of running a script. Until it is
+made, `npm run verify` exits 1 and CI is red. **That red is the gate working.**
+Do not make it green by relaxing the gate.
+
+If you are the one fixing one: adjust `madara.selectors.pageList`, re-run
+`npm run verify:readable <name>`, and check `git diff` on the definition — a
+flip from `false` to `true` is appended to `readable-history.json` and is the
+evidence that it was genuinely re-tested, not re-stamped.
+
+## Readability history
+
+`readable-history.json` holds one entry per source per *changed* run, oldest
+first, capped at eight. A run that re-confirms an unchanged verdict appends
+nothing, so the file stays quiet when nothing is wrong and moves when
+something is. Sources deleted from `sources/` drop out of it.
+
+The point is that a diff is meaningful. Current state alone cannot distinguish
+"this source has been readable for a year" from "this source broke yesterday
+and nobody has looked", and a silent overwrite loses the moment a site
+started failing.
