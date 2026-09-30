@@ -58,7 +58,7 @@
             "requires": [
               "network"
             ],
-            "description": "Receive a file on this device with croc, the open-source command-line transfer tool by Zack Scholl (MIT). Run `croc send book.epub` on your laptop, type the three-word code it prints, and the file comes here. Receiving only in this release; sending from Kora is not implemented. Honest limits: only the last two of the three words are secret, which is about 20.7 bits — the first word is a room name the relay can see — and the relay connection uses a hardcoded public key, so the relay operator can see which rooms exist, when, and how large the transfers are, though not the file contents. A malicious sender can also try to attack the receiving filesystem (croc has published four advisories of exactly that kind), so only accept codes from someone you trust. Kora writes no croc code; croc and its EFF wordlist (CC BY 4.0) and vendored Tailcat (BSD-3-Clause) are not bundled. See NOTICE.md.",
+            "description": "Receive a file on this device with croc, an open-source command-line transfer tool. Run `croc send book.epub` on your laptop and type the code it prints. Receiving only; see NOTICE.md for limits.",
             "author": "Kora",
             "homeUrl": "https://github.com/schollz/croc"
           }
