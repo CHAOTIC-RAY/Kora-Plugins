@@ -1,0 +1,26 @@
+{
+  "id": "kora-theme-copper-night",
+  "name": "Copper Night",
+  "version": 1,
+  "category": "theme",
+  "themeId": "copper-night",
+  "dark": true,
+  "lang": "en",
+  "nsfw": false,
+  "piracy": false,
+  "author": "Kora",
+  "icon": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/themes/icons/copper-night.png",
+  "website": "https://github.com/CHAOTIC-RAY/Kora-Sources",
+  "description": "A warm dark theme: near-black brown surfaces with copper accents, built for long evening reading.",
+  "tokens": {
+    "bg": "#12100E",
+    "text": "#F2EDE4",
+    "textMuted": "#A79C8C",
+    "border": "#3A342C",
+    "accent": "#C8853A",
+    "card": "#1C1916",
+    "toastBg": "rgba(28, 25, 22, 0.9)"
+  },
+  "readable": true,
+  "readableCheckedAt": "2026-09-30T07:11:08.938Z"
+}

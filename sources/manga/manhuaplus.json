@@ -15,5 +15,7 @@
   "madara": {
     "mangaPath": "/manga/",
     "popularPath": "/manga/?status=hot&page=1"
-  }
+  },
+  "readable": true,
+  "readableCheckedAt": "2026-09-30T07:10:59.202Z"
 }

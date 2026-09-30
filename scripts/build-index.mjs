@@ -37,6 +37,46 @@ async function collect(dir) {
 const files = (await collect(SOURCES)).sort();
 const plugins = [];
 
+const VALID_CATEGORIES = new Set(["source", "theme", "integration", "tool"]);
+
+/**
+ * A theme is only worth shipping if it can actually render. Check the same
+ * things the app checks, so a theme that would be rejected at install time
+ * fails the build instead.
+ */
+function validateTheme(plugin, problems) {
+  if (!plugin.themeId) problems.push("theme is missing themeId");
+  if (typeof plugin.dark !== "boolean") {
+    problems.push('theme is missing the boolean "dark" flag');
+  }
+  const t = plugin.tokens;
+  if (!t || typeof t !== "object") {
+    problems.push("theme is missing tokens");
+    return;
+  }
+  for (const key of ["bg", "text", "textMuted", "border", "accent", "card"]) {
+    if (typeof t[key] !== "string" || !t[key].trim()) {
+      problems.push(`theme token "${key}" is missing`);
+    }
+  }
+  if (t.toastBg !== undefined && typeof t.toastBg !== "string") {
+    problems.push('theme token "toastBg" must be a string when present');
+  }
+}
+
+function validateIntegration(plugin, problems) {
+  if (!plugin.target) {
+    problems.push("integration is missing target");
+  } else if (!["kindle", "calibre"].includes(plugin.target)) {
+    problems.push(`unknown integration target "${plugin.target}"`);
+  }
+  // An integration that cannot work must say so, rather than shipping an
+  // install button that does nothing.
+  if (plugin.availability === "unavailable" && !plugin.availabilityNote) {
+    problems.push('an "unavailable" integration must carry an availabilityNote');
+  }
+}
+
 for (const f of files) {
   let plugin;
   try {
@@ -52,7 +92,20 @@ for (const f of files) {
     problems.push("missing id");
   }
   if (!plugin.name) problems.push("missing name");
-  if (!plugin.baseUrl) problems.push("missing baseUrl");
+
+  // Category decides what a plugin needs. A source fetches from a site, so it
+  // needs a baseUrl. A theme writes CSS tokens and an integration talks to
+  // something the *user* configures in-app, so neither has (or should have) a
+  // baseUrl — requiring one was rejecting every non-source plugin outright.
+  const category = plugin.category || "source";
+  if (!VALID_CATEGORIES.has(category)) {
+    problems.push(`unknown category "${category}"`);
+  }
+  if (category === "source" && !plugin.baseUrl) {
+    problems.push("missing baseUrl");
+  }
+  if (category === "theme") validateTheme(plugin, problems);
+  if (category === "integration") validateIntegration(plugin, problems);
 
   // A numeric id longer than 17 significant digits cannot survive a JSON
   // round trip — `Number("6289731484943315811")` collapses to ...6000, so the
@@ -80,8 +133,10 @@ for (const f of files) {
   const tags = [];
   if (plugin.piracy) tags.push("piracy");
   if (plugin.nsfw) tags.push("nsfw");
+  // The category is the first thing a reader wants to know about a plugin, so
+  // it is printed rather than inferred from the directory name.
   console.log(
-    `ok  ${String(plugin.id).padEnd(24)} ${plugin.name} [${plugin.kind || "?"}]${tags.length ? " " + tags.join(",") : ""}`
+    `ok  ${String(plugin.id).padEnd(24)} ${plugin.name} [${category}]${tags.length ? " " + tags.join(",") : ""}`
   );
 }
 
@@ -97,8 +152,10 @@ function relative(from, to) {
  */
 const byPackage = new Map();
 for (const p of plugins) {
-  const rel = p.__dir || "";
-  const pkg = p.gen2?.packageName || `kora.${rel || "misc"}.${slug(p.name)}`;
+  // Each category is its own package namespace, so a theme can never be
+  // grouped into a source extension and vice versa.
+  const cat = p.category || "source";
+  const pkg = p.gen2?.packageName || `kora.${cat}.${slug(p.name)}`;
   if (!byPackage.has(pkg)) byPackage.set(pkg, []);
   byPackage.get(pkg).push(p);
 }
@@ -122,6 +179,54 @@ function iconFor(group) {
     );
   }
   return icon;
+}
+
+/**
+ * A source that lists series and chapters but serves no page image is not
+ * readable, and must not be published as working.
+ *
+ * This gate exists because that failure was invisible: MangaZin passed
+ * every other check in this file — valid manifest, real icon, correct Gen 2
+ * shape, live listings, 661 chapters — and still returned HTTP 404 for
+ * every panel. A user installed it, opened a series, and got a black
+ * rectangle with no error. Nothing in the build could see it, because
+ * nothing ever fetched an image.
+ *
+ * The verdict comes from kora-repo's scripts/verify-registry-readable.mts,
+ * which drives the same parser the app reads with. Stamps written here are
+ * the input; run that script with --write to refresh them.
+ *
+ * KORA_STRICT_READABLE=1 turns the warning into a hard failure, for CI.
+ */
+const STRICT = process.env.KORA_STRICT_READABLE === "1";
+const unreadable = [];
+for (const g of plugins) {
+  if ((g.category || "source") !== "source") continue;
+  if (g.theme !== "madara" && !g.madara) continue;
+  if (g.readable === false) {
+    unreadable.push({ name: g.name, note: g.readableNote || "no reason recorded" });
+  } else if (g.readable === undefined) {
+    console.warn(
+      `warn  ${g.name}: readability never verified — run ` +
+        `node scripts/verify-readable.mjs from kora-repo, or this source is ` +
+        `published on trust`
+    );
+  }
+}
+if (unreadable.length) {
+  const lines = unreadable.map((u) => `         - ${u.name}: ${u.note}`).join("\n");
+  console.error(
+    `\nerror: ${unreadable.length} source(s) cannot serve a page image and ` +
+      `must not be published as working:\n${lines}`
+  );
+  if (STRICT) {
+    console.error("\nKORA_STRICT_READABLE=1 — failing the build.");
+    process.exit(1);
+  }
+  console.error(
+    "\nRemove them from sources/, or set \"readable\": false with a reason.\n" +
+      "Set KORA_STRICT_READABLE=1 to make this fatal."
+  );
 }
 
 const extensions = [];
@@ -150,7 +255,24 @@ for (const [pkg, group] of byPackage) {
       // missing flag is never mistaken for "clean".
       piracy: g.piracy === true,
       nsfw: g.nsfw === true,
-      ...(g.gen2?.homeUrl || g.baseUrl ? { homeUrl: g.gen2?.homeUrl || g.baseUrl } : {}),
+      // The category travels in the index so the hub can group the registry
+      // into Sources / Themes / Integrations without downloading each plugin
+      // file first. Defaults to "source" for registries that omit it.
+      category: g.category || "source",
+      // Theme + integration payload the hub needs to render a card and decide
+      // whether the thing can actually work. Only present on those categories.
+      ...(g.themeId ? { themeId: g.themeId } : {}),
+      ...(g.tokens ? { tokens: g.tokens } : {}),
+      ...(typeof g.dark === "boolean" ? { dark: g.dark } : {}),
+      ...(g.target ? { target: g.target } : {}),
+      ...(g.availability ? { availability: g.availability } : {}),
+      ...(g.availabilityNote ? { availabilityNote: g.availabilityNote } : {}),
+      ...(Array.isArray(g.requires) && g.requires.length ? { requires: g.requires } : {}),
+      ...(g.description ? { description: g.description } : {}),
+      ...(g.author ? { author: g.author } : {}),
+      ...(g.gen2?.homeUrl || g.baseUrl || g.website
+        ? { homeUrl: g.gen2?.homeUrl || g.baseUrl || g.website }
+        : {}),
     })),
   });
 }

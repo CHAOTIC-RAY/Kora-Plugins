@@ -7,8 +7,67 @@
   "extensionList": {
     "extensions": [
       {
+        "name": "Calibre",
+        "packageName": "kora.integration.calibre",
+        "resources": {
+          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/integrations/calibre.json",
+          "iconUrl": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/integrations/icons/calibre.png"
+        },
+        "extensionLib": "kora-1",
+        "versionCode": "1000",
+        "versionName": "1.0.0",
+        "sources": [
+          {
+            "id": "kora-integration-calibre",
+            "name": "Calibre",
+            "language": "en",
+            "piracy": false,
+            "nsfw": false,
+            "category": "integration",
+            "target": "calibre",
+            "availability": "ready",
+            "requires": [
+              "network"
+            ],
+            "description": "Browse and download from a Calibre Content Server you run yourself. You supply the server address and your own Calibre credentials in Settings; nothing is hardcoded and no credentials are shipped.",
+            "author": "Kora",
+            "homeUrl": "https://calibre-ebook.com"
+          }
+        ]
+      },
+      {
+        "name": "Send To Kindle",
+        "packageName": "kora.integration.send-to-kindle",
+        "resources": {
+          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/integrations/send-to-kindle.json",
+          "iconUrl": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/integrations/icons/send-to-kindle.png"
+        },
+        "extensionLib": "kora-1",
+        "versionCode": "1000",
+        "versionName": "1.0.0",
+        "sources": [
+          {
+            "id": "kora-integration-kindle",
+            "name": "Send to Kindle",
+            "language": "en",
+            "piracy": false,
+            "nsfw": false,
+            "category": "integration",
+            "target": "kindle",
+            "availability": "unavailable",
+            "availabilityNote": "NOT YET FUNCTIONAL. Uploading to a Kindle requires Amazon's KDP Personal Document Service, which is gated behind an Amazon-approved developer account. Amazon does not issue these tokens to third-party apps, and there is no user-supplied-credential path that works. This plugin therefore installs, and shows you how to use Calibre's own Send to Kindle plugin instead, but it will not claim to have sent anything. No upload is attempted and no success is ever reported.",
+            "requires": [
+              "permission"
+            ],
+            "description": "Reads from a Calibre library that you feed from Send to Kindle. Direct upload from Kora to an Amazon device is NOT implemented — see the note below.",
+            "author": "Kora",
+            "homeUrl": "https://www.amazon.com/sendtokindle"
+          }
+        ]
+      },
+      {
         "name": "Project Gutenberg",
-        "packageName": "kora.misc.project-gutenberg",
+        "packageName": "kora.source.project-gutenberg",
         "resources": {
           "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/legal/gutenberg.json",
           "iconUrl": "https://www.gutenberg.org/cache/epub/1342/pg1342.cover.medium.jpg"
@@ -23,13 +82,15 @@
             "language": "en",
             "piracy": false,
             "nsfw": false,
+            "category": "source",
+            "description": "Project Gutenberg — over 75,000 public-domain eBooks, read via the Gutendex catalogue.",
             "homeUrl": "https://gutendex.com"
           }
         ]
       },
       {
         "name": "Internet Archive Texts",
-        "packageName": "kora.misc.internet-archive-texts",
+        "packageName": "kora.source.internet-archive-texts",
         "resources": {
           "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/legal/internet-archive.json",
           "iconUrl": "https://archive.org/images/glogo.jpg"
@@ -44,13 +105,14 @@
             "language": "en",
             "piracy": false,
             "nsfw": false,
+            "category": "source",
             "homeUrl": "https://archive.org"
           }
         ]
       },
       {
         "name": "Mangareadorg",
-        "packageName": "kora.misc.mangareadorg",
+        "packageName": "kora.source.mangareadorg",
         "resources": {
           "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/manga/mangaread-org.json",
           "iconUrl": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/manga/icons/mangaread-org.png"
@@ -65,16 +127,18 @@
             "language": "en",
             "piracy": true,
             "nsfw": false,
+            "category": "source",
+            "description": "MangaReadOrg — a Madara-hosted manga site, read through the shared Kora Madara engine.",
             "homeUrl": "https://mangaread.org"
           }
         ]
       },
       {
         "name": "Mangazin",
-        "packageName": "kora.misc.mangazin",
+        "packageName": "kora.source.mangazin",
         "resources": {
           "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/manga/mangazin.json",
-          "iconUrl": ""
+          "iconUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/icons/mangazin.png"
         },
         "extensionLib": "kora-1",
         "versionCode": "1000",
@@ -86,6 +150,8 @@
             "language": "en",
             "piracy": true,
             "nsfw": false,
+            "category": "source",
+            "description": "MangaZin — a Madara-hosted manga site, read through the shared Kora Madara engine.",
             "homeUrl": "https://mangazin.org"
           }
         ]
@@ -107,13 +173,14 @@
             "language": "en",
             "piracy": true,
             "nsfw": false,
+            "category": "source",
             "homeUrl": "https://manhuahot.com"
           }
         ]
       },
       {
         "name": "Manhuaplus",
-        "packageName": "kora.misc.manhuaplus",
+        "packageName": "kora.source.manhuaplus",
         "resources": {
           "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/manga/manhuaplus.json",
           "iconUrl": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/manga/icons/manhuaplus.png"
@@ -128,13 +195,15 @@
             "language": "en",
             "piracy": true,
             "nsfw": false,
+            "category": "source",
+            "description": "ManhuaPlus — a Madara-hosted manga site, read through the shared Kora Madara engine.",
             "homeUrl": "https://manhuaplus.com"
           }
         ]
       },
       {
         "name": "Manhuaus",
-        "packageName": "kora.misc.manhuaus",
+        "packageName": "kora.source.manhuaus",
         "resources": {
           "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/manga/manhuaus.json",
           "iconUrl": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/manga/icons/manhuaus.png"
@@ -149,6 +218,8 @@
             "language": "en",
             "piracy": true,
             "nsfw": false,
+            "category": "source",
+            "description": "Manhuaus — a Madara-hosted manga site, read through the shared Kora Madara engine.",
             "homeUrl": "https://manhuaus.com"
           }
         ]
@@ -170,7 +241,78 @@
             "language": "en",
             "piracy": true,
             "nsfw": false,
+            "category": "source",
             "homeUrl": "https://s2read.com"
+          }
+        ]
+      },
+      {
+        "name": "Copper Night",
+        "packageName": "kora.theme.copper-night",
+        "resources": {
+          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/themes/copper-night.json",
+          "iconUrl": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/themes/icons/copper-night.png"
+        },
+        "extensionLib": "kora-1",
+        "versionCode": "1000",
+        "versionName": "1.0.0",
+        "sources": [
+          {
+            "id": "kora-theme-copper-night",
+            "name": "Copper Night",
+            "language": "en",
+            "piracy": false,
+            "nsfw": false,
+            "category": "theme",
+            "themeId": "copper-night",
+            "tokens": {
+              "bg": "#12100E",
+              "text": "#F2EDE4",
+              "textMuted": "#A79C8C",
+              "border": "#3A342C",
+              "accent": "#C8853A",
+              "card": "#1C1916",
+              "toastBg": "rgba(28, 25, 22, 0.9)"
+            },
+            "dark": true,
+            "description": "A warm dark theme: near-black brown surfaces with copper accents, built for long evening reading.",
+            "author": "Kora",
+            "homeUrl": "https://github.com/CHAOTIC-RAY/Kora-Sources"
+          }
+        ]
+      },
+      {
+        "name": "Mint Terminal",
+        "packageName": "kora.theme.mint-terminal",
+        "resources": {
+          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/themes/mint-terminal.json",
+          "iconUrl": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/themes/icons/mint-terminal.png"
+        },
+        "extensionLib": "kora-1",
+        "versionCode": "1000",
+        "versionName": "1.0.0",
+        "sources": [
+          {
+            "id": "kora-theme-mint-terminal",
+            "name": "Mint Terminal",
+            "language": "en",
+            "piracy": false,
+            "nsfw": false,
+            "category": "theme",
+            "themeId": "mint-terminal",
+            "tokens": {
+              "bg": "#0C1410",
+              "text": "#D6F5E0",
+              "textMuted": "#6FA98A",
+              "border": "#22402F",
+              "accent": "#4ADE80",
+              "card": "#111E17",
+              "toastBg": "rgba(17, 30, 23, 0.9)"
+            },
+            "dark": true,
+            "description": "Phosphor-green on deep charcoal, high contrast and monospace-friendly for technical reading.",
+            "author": "Kora",
+            "homeUrl": "https://github.com/CHAOTIC-RAY/Kora-Sources"
           }
         ]
       }

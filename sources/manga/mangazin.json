@@ -10,11 +10,14 @@
   "nsfw": false,
   "enabled": false,
   "website": "https://mangazin.org",
-  "icon": "",
+  "icon": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/icons/mangazin.png",
   "description": "MangaZin — a Madara-hosted manga site, read through the shared Kora Madara engine.",
   "madara": {
     "mangaPath": "/manga/",
     "popularPath": "/manga/?status=hot&page=1"
   },
-  "iconNote": "No icon published upstream for this site; the card falls back to a monogram."
+  "iconNote": "No icon published upstream for this site; the card falls back to a monogram.",
+  "readable": false,
+  "readableCheckedAt": "2026-09-30T07:10:53.704Z",
+  "readableNote": "panels: panel not served for 3 chapter(s)"
 }

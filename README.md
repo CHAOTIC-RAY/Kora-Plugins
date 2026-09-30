@@ -415,3 +415,40 @@ and the live [Keiyoushi extension registry](https://github.com/keiyoushi/extensi
 (Gen 2, Apache-2.0). The selector dialect and the source contract are modelled
 on theirs so existing sources port cleanly. No upstream code is copied here —
 the format and all field names are our own. See `NOTICE`.
+
+## Readability gate
+
+A source that lists series and chapters but serves no page image is **not
+readable**, and must not be published as working. This failure is invisible
+to every other check: MangaZin passed all of them — valid manifest, real
+icon, correct Gen 2 shape, live listings, 661 chapters — and still returned
+HTTP 404 for every panel.
+
+So the registry is gated on it. Verdicts come from the kora-repo script
+below, which drives the same parser the app reads with, and are stamped into
+each definition as `readable` / `readableNote`:
+
+```bash
+# from kora-repo — re-verify every source and refresh the stamps
+node node_modules/tsx/dist/cli.mjs scripts/verify-registry-readable.mts --write
+
+# from here — build the index; unreadable sources are reported
+node scripts/build-index.mjs
+
+# in CI — make it fatal
+KORA_STRICT_READABLE=1 node scripts/build-index.mjs
+```
+
+The check walks the real chain a reader takes — listing, details, chapters,
+pages — and requires the first panel to come back `200` with an `image/*`
+content type. It distinguishes **unreadable** (the site works up to serving
+images and then refuses — a defect) from **unreachable** (dead host, TLS
+failure, timeout — not a defect), because conflating them makes a flaky
+network fail the build.
+
+The verification lives in kora-repo rather than here on purpose. An earlier
+version re-implemented listing and chapter parsing in this repo and
+disagreed with itself within one run — it passed S2Read and ManhuaPlus with
+a loose test, then failed both once the test was tightened. A gate that
+re-implements the thing it gates drifts from it, and a gate that gives the
+wrong answer gets switched off.

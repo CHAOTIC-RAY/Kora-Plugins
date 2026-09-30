@@ -1,0 +1,26 @@
+{
+  "id": "kora-theme-mint-terminal",
+  "name": "Mint Terminal",
+  "version": 1,
+  "category": "theme",
+  "themeId": "mint-terminal",
+  "dark": true,
+  "lang": "en",
+  "nsfw": false,
+  "piracy": false,
+  "author": "Kora",
+  "icon": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/themes/icons/mint-terminal.png",
+  "website": "https://github.com/CHAOTIC-RAY/Kora-Sources",
+  "description": "Phosphor-green on deep charcoal, high contrast and monospace-friendly for technical reading.",
+  "tokens": {
+    "bg": "#0C1410",
+    "text": "#D6F5E0",
+    "textMuted": "#6FA98A",
+    "border": "#22402F",
+    "accent": "#4ADE80",
+    "card": "#111E17",
+    "toastBg": "rgba(17, 30, 23, 0.9)"
+  },
+  "readable": true,
+  "readableCheckedAt": "2026-09-30T07:11:08.939Z"
+}
