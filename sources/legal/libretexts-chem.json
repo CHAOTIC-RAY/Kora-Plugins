@@ -1,0 +1,38 @@
+{
+  "id": "kora-book-libretexts-chem",
+  "name": "LibreTexts Chemistry",
+  "lang": "en",
+  "version": 1,
+  "nsfw": false,
+  "kind": "book",
+  "api": "json",
+  "piracy": false,
+  "baseUrl": "https://chem.libretexts.org",
+  "icon": "https://chem.libretexts.org/favicon.ico",
+  "website": "https://chem.libretexts.org",
+  "description": "Open-access chemistry textbooks from the LibreTexts project — every result is free to read online and download as PDF. Scoped to the Chemistry collection; Math, Physics and Biology sit on separate hosts that require an API token.",
+  "endpoints": {
+    "json": {
+      "search": {
+        "url": "/@api/deki/site/search?q={query}&limit=20&dream.out.format=json",
+        "path": "page",
+        "title": "title",
+        "url_": "@id",
+        "limit": 20
+      },
+      "details": {
+        "url": "/@api/deki/pages/{mangaId}?dream.out.format=json",
+        "path": "",
+        "title": "title",
+        "description": "description",
+        "genres": "path"
+      },
+      "file": {
+        "url": "/@api/deki/pages/{mangaId}/pdf/{title}.pdf"
+      }
+    }
+  },
+  "readable": true,
+  "readableNote": "Verified anonymously 2026-10-01. /@api/deki/site/search returns JSON with no token, and every result id maps to a real PDF at /@api/deki/pages/{id}/pdf/ (id 31334 -> 200, 45 KB, %PDF-; id 1919 -> 200, 81 KB).",
+  "readableCheckedAt": "2026-10-01T16:02:00.000Z"
+}
