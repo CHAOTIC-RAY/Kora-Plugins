@@ -9,8 +9,8 @@
   "nsfw": false,
   "piracy": false,
   "author": "Kora",
-  "icon": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/themes/icons/mint-terminal.png",
-  "website": "https://github.com/CHAOTIC-RAY/Kora-Sources",
+  "icon": "https://github.com/CHAOTIC-RAY/Kora-Plugins/raw/main/sources/themes/icons/mint-terminal.png",
+  "website": "https://github.com/CHAOTIC-RAY/Kora-Plugins",
   "description": "Phosphor-green on deep charcoal, high contrast and monospace-friendly for technical reading.",
   "tokens": {
     "bg": "#0C1410",

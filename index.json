@@ -1,8 +1,8 @@
 {
-  "name": "Kora Sources",
+  "name": "Kora Plugins",
   "badgeLabel": "KORA",
   "contact": {
-    "website": "https://github.com/CHAOTIC-RAY/Kora-Sources"
+    "website": "https://github.com/CHAOTIC-RAY/Kora-Plugins"
   },
   "extensionList": {
     "extensions": [
@@ -10,8 +10,8 @@
         "name": "Calibre",
         "packageName": "kora.integration.calibre",
         "resources": {
-          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/integrations/calibre.json",
-          "iconUrl": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/integrations/icons/calibre.png"
+          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Plugins/main/sources/integrations/calibre.json",
+          "iconUrl": "https://github.com/CHAOTIC-RAY/Kora-Plugins/raw/main/sources/integrations/icons/calibre.png"
         },
         "extensionLib": "kora-1",
         "versionCode": "1000",
@@ -29,6 +29,7 @@
             "requires": [
               "network"
             ],
+            "readableCheckedAt": "2026-09-30T07:19:24.434Z",
             "description": "Browse and download from a Calibre Content Server you run yourself. You supply the server address and your own Calibre credentials in Settings; nothing is hardcoded and no credentials are shipped.",
             "author": "Kora",
             "homeUrl": "https://calibre-ebook.com"
@@ -39,8 +40,8 @@
         "name": "Croc",
         "packageName": "kora.integration.croc",
         "resources": {
-          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/integrations/croc.json",
-          "iconUrl": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/integrations/icons/croc.png"
+          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Plugins/main/sources/integrations/croc.json",
+          "iconUrl": "https://github.com/CHAOTIC-RAY/Kora-Plugins/raw/main/sources/integrations/icons/croc.png"
         },
         "extensionLib": "kora-1",
         "versionCode": "1000",
@@ -58,6 +59,7 @@
             "requires": [
               "network"
             ],
+            "readableCheckedAt": "2026-09-30T08:14:31.034Z",
             "description": "Receive a file on this device with croc, an open-source command-line transfer tool. Run `croc send book.epub` on your laptop and type the code it prints. Receiving only; see NOTICE.md for limits.",
             "author": "Kora",
             "homeUrl": "https://github.com/schollz/croc"
@@ -68,8 +70,8 @@
         "name": "Send To Kobo Kindle",
         "packageName": "kora.integration.send-to-kobo-kindle",
         "resources": {
-          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/integrations/send-to-kindle.json",
-          "iconUrl": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/integrations/icons/send-to-kindle.png"
+          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Plugins/main/sources/integrations/send-to-kindle.json",
+          "iconUrl": "https://github.com/CHAOTIC-RAY/Kora-Plugins/raw/main/sources/integrations/icons/send-to-kindle.png"
         },
         "extensionLib": "kora-1",
         "versionCode": "1000",
@@ -88,6 +90,7 @@
             "requires": [
               "permission"
             ],
+            "readableCheckedAt": "2026-09-30T07:19:24.435Z",
             "description": "Send a book to your Kobo or Kindle. Three routes: upload to a Send-to-Kindle server you choose, hand off to croc, or open Amazon's official Send to Kindle page. Your own key or server address; no credentials are shipped.",
             "author": "Kora",
             "homeUrl": "https://www.amazon.com/sendtokindle"
@@ -98,7 +101,7 @@
         "name": "Project Gutenberg",
         "packageName": "kora.source.project-gutenberg",
         "resources": {
-          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/legal/gutenberg.json",
+          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Plugins/main/sources/legal/gutenberg.json",
           "iconUrl": "https://www.gutenberg.org/cache/epub/1342/pg1342.cover.medium.jpg"
         },
         "extensionLib": "kora-1",
@@ -112,6 +115,7 @@
             "piracy": false,
             "nsfw": false,
             "category": "source",
+            "readableCheckedAt": "2026-09-30T07:19:24.435Z",
             "description": "Project Gutenberg — over 75,000 public-domain eBooks, read via the Gutendex catalogue.",
             "homeUrl": "https://gutendex.com"
           }
@@ -121,7 +125,7 @@
         "name": "Internet Archive Texts",
         "packageName": "kora.source.internet-archive-texts",
         "resources": {
-          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/legal/internet-archive.json",
+          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Plugins/main/sources/legal/internet-archive.json",
           "iconUrl": "https://archive.org/images/glogo.jpg"
         },
         "extensionLib": "kora-1",
@@ -135,6 +139,7 @@
             "piracy": false,
             "nsfw": false,
             "category": "source",
+            "readableCheckedAt": "2026-09-30T07:19:24.436Z",
             "homeUrl": "https://archive.org"
           }
         ]
@@ -143,8 +148,8 @@
         "name": "Mangareadorg",
         "packageName": "kora.source.mangareadorg",
         "resources": {
-          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/manga/mangaread-org.json",
-          "iconUrl": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/manga/icons/mangaread-org.png"
+          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Plugins/main/sources/manga/mangaread-org.json",
+          "iconUrl": "https://github.com/CHAOTIC-RAY/Kora-Plugins/raw/main/sources/manga/icons/mangaread-org.png"
         },
         "extensionLib": "kora-1",
         "versionCode": "1000",
@@ -157,6 +162,7 @@
             "piracy": true,
             "nsfw": false,
             "category": "source",
+            "readableCheckedAt": "2026-09-30T07:19:24.436Z",
             "description": "MangaReadOrg — a Madara-hosted manga site, read through the shared Kora Madara engine.",
             "homeUrl": "https://mangaread.org"
           }
@@ -166,8 +172,8 @@
         "name": "Mangazin",
         "packageName": "kora.source.mangazin",
         "resources": {
-          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/manga/mangazin.json",
-          "iconUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/icons/mangazin.png"
+          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Plugins/main/sources/manga/mangazin.json",
+          "iconUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Plugins/main/icons/mangazin.png"
         },
         "extensionLib": "kora-1",
         "versionCode": "1000",
@@ -180,6 +186,9 @@
             "piracy": true,
             "nsfw": false,
             "category": "source",
+            "readable": false,
+            "readableNote": "panels: panel not served for 3 chapter(s)",
+            "readableCheckedAt": "2026-09-30T07:19:29.097Z",
             "description": "MangaZin — a Madara-hosted manga site, read through the shared Kora Madara engine.",
             "homeUrl": "https://mangazin.org"
           }
@@ -189,8 +198,8 @@
         "name": "Manhuahot",
         "packageName": "eu.kanade.tachiyomi.extension.en.manhuahot",
         "resources": {
-          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/manga/manhuahot.json",
-          "iconUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/icons/manhuahot.png"
+          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Plugins/main/sources/manga/manhuahot.json",
+          "iconUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Plugins/main/icons/manhuahot.png"
         },
         "extensionLib": "kora-1",
         "versionCode": "1000",
@@ -203,6 +212,7 @@
             "piracy": true,
             "nsfw": false,
             "category": "source",
+            "readableCheckedAt": "2026-09-30T07:19:31.117Z",
             "homeUrl": "https://manhuahot.com"
           }
         ]
@@ -211,8 +221,8 @@
         "name": "Manhuaplus",
         "packageName": "kora.source.manhuaplus",
         "resources": {
-          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/manga/manhuaplus.json",
-          "iconUrl": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/manga/icons/manhuaplus.png"
+          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Plugins/main/sources/manga/manhuaplus.json",
+          "iconUrl": "https://github.com/CHAOTIC-RAY/Kora-Plugins/raw/main/sources/manga/icons/manhuaplus.png"
         },
         "extensionLib": "kora-1",
         "versionCode": "1000",
@@ -225,6 +235,7 @@
             "piracy": true,
             "nsfw": false,
             "category": "source",
+            "readableCheckedAt": "2026-09-30T07:19:34.531Z",
             "description": "ManhuaPlus — a Madara-hosted manga site, read through the shared Kora Madara engine.",
             "homeUrl": "https://manhuaplus.com"
           }
@@ -234,8 +245,8 @@
         "name": "Manhuaus",
         "packageName": "kora.source.manhuaus",
         "resources": {
-          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/manga/manhuaus.json",
-          "iconUrl": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/manga/icons/manhuaus.png"
+          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Plugins/main/sources/manga/manhuaus.json",
+          "iconUrl": "https://github.com/CHAOTIC-RAY/Kora-Plugins/raw/main/sources/manga/icons/manhuaus.png"
         },
         "extensionLib": "kora-1",
         "versionCode": "1000",
@@ -248,6 +259,9 @@
             "piracy": true,
             "nsfw": false,
             "category": "source",
+            "readable": false,
+            "readableNote": "panels: panel not served for 3 chapter(s)",
+            "readableCheckedAt": "2026-09-30T07:19:38.036Z",
             "description": "Manhuaus — a Madara-hosted manga site, read through the shared Kora Madara engine.",
             "homeUrl": "https://manhuaus.com"
           }
@@ -257,8 +271,8 @@
         "name": "S2read",
         "packageName": "eu.kanade.tachiyomi.extension.en.s2read",
         "resources": {
-          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/manga/s2read.json",
-          "iconUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/icons/s2read.png"
+          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Plugins/main/sources/manga/s2read.json",
+          "iconUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Plugins/main/icons/s2read.png"
         },
         "extensionLib": "kora-1",
         "versionCode": "1000",
@@ -271,6 +285,7 @@
             "piracy": true,
             "nsfw": false,
             "category": "source",
+            "readableCheckedAt": "2026-09-30T07:19:40.806Z",
             "homeUrl": "https://s2read.com"
           }
         ]
@@ -279,8 +294,8 @@
         "name": "Copper Night",
         "packageName": "kora.theme.copper-night",
         "resources": {
-          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/themes/copper-night.json",
-          "iconUrl": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/themes/icons/copper-night.png"
+          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Plugins/main/sources/themes/copper-night.json",
+          "iconUrl": "https://github.com/CHAOTIC-RAY/Kora-Plugins/raw/main/sources/themes/icons/copper-night.png"
         },
         "extensionLib": "kora-1",
         "versionCode": "1000",
@@ -304,9 +319,10 @@
               "toastBg": "rgba(28, 25, 22, 0.9)"
             },
             "dark": true,
+            "readableCheckedAt": "2026-09-30T07:19:42.851Z",
             "description": "A warm dark theme: near-black brown surfaces with copper accents, built for long evening reading.",
             "author": "Kora",
-            "homeUrl": "https://github.com/CHAOTIC-RAY/Kora-Sources"
+            "homeUrl": "https://github.com/CHAOTIC-RAY/Kora-Plugins"
           }
         ]
       },
@@ -314,8 +330,8 @@
         "name": "Mint Terminal",
         "packageName": "kora.theme.mint-terminal",
         "resources": {
-          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/sources/themes/mint-terminal.json",
-          "iconUrl": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/themes/icons/mint-terminal.png"
+          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Plugins/main/sources/themes/mint-terminal.json",
+          "iconUrl": "https://github.com/CHAOTIC-RAY/Kora-Plugins/raw/main/sources/themes/icons/mint-terminal.png"
         },
         "extensionLib": "kora-1",
         "versionCode": "1000",
@@ -339,9 +355,10 @@
               "toastBg": "rgba(17, 30, 23, 0.9)"
             },
             "dark": true,
+            "readableCheckedAt": "2026-09-30T07:19:42.851Z",
             "description": "Phosphor-green on deep charcoal, high contrast and monospace-friendly for technical reading.",
             "author": "Kora",
-            "homeUrl": "https://github.com/CHAOTIC-RAY/Kora-Sources"
+            "homeUrl": "https://github.com/CHAOTIC-RAY/Kora-Plugins"
           }
         ]
       }

@@ -10,7 +10,7 @@
   "nsfw": false,
   "enabled": false,
   "website": "https://manhuaus.com",
-  "icon": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/manga/icons/manhuaus.png",
+  "icon": "https://github.com/CHAOTIC-RAY/Kora-Plugins/raw/main/sources/manga/icons/manhuaus.png",
   "description": "Manhuaus — a Madara-hosted manga site, read through the shared Kora Madara engine.",
   "madara": {
     "mangaPath": "/manga/",

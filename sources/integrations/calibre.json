@@ -8,7 +8,7 @@
   "nsfw": false,
   "piracy": false,
   "author": "Kora",
-  "icon": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/integrations/icons/calibre.png",
+  "icon": "https://github.com/CHAOTIC-RAY/Kora-Plugins/raw/main/sources/integrations/icons/calibre.png",
   "website": "https://calibre-ebook.com",
   "description": "Browse and download from a Calibre Content Server you run yourself. You supply the server address and your own Calibre credentials in Settings; nothing is hardcoded and no credentials are shipped.",
   "availability": "ready",

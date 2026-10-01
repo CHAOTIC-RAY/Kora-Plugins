@@ -10,7 +10,7 @@
   "nsfw": false,
   "enabled": false,
   "website": "https://mangazin.org",
-  "icon": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Sources/main/icons/mangazin.png",
+  "icon": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Plugins/main/icons/mangazin.png",
   "description": "MangaZin — a Madara-hosted manga site, read through the shared Kora Madara engine.",
   "madara": {
     "mangaPath": "/manga/",

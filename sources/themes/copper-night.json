@@ -9,8 +9,8 @@
   "nsfw": false,
   "piracy": false,
   "author": "Kora",
-  "icon": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/themes/icons/copper-night.png",
-  "website": "https://github.com/CHAOTIC-RAY/Kora-Sources",
+  "icon": "https://github.com/CHAOTIC-RAY/Kora-Plugins/raw/main/sources/themes/icons/copper-night.png",
+  "website": "https://github.com/CHAOTIC-RAY/Kora-Plugins",
   "description": "A warm dark theme: near-black brown surfaces with copper accents, built for long evening reading.",
   "tokens": {
     "bg": "#12100E",

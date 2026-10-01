@@ -543,6 +543,25 @@ images and then refuses — a defect) from **unreachable** (dead host, TLS
 failure, timeout — not a defect), because conflating them makes a flaky
 network fail the build.
 
+### The flag is visible in the app
+
+`readable: false` is not a build-time gate only. `build-index.mjs` copies the
+verdict into `index.json`, and Kora surfaces it: the hub card carries an
+**Images unavailable** badge, the source detail sheet states plainly that the
+panels 404 and quotes `readableNote` verbatim, the Discover chip is marked
+before you tap into chapters, and the series detail says it up front. The
+source is badged, never hidden — it may still list series correctly, and
+silently dropping it would be its own kind of lie.
+
+So the flag has a visible consequence for the person using the app, not just
+for whoever runs the registry. A source author setting it is choosing to
+publish a card that says "this does not work" on it.
+
+The flag defaults the other way on purpose. Only an explicit `readable: false`
+marks a source; a missing field means *unverified*, and the app treats it as
+readable. An older or partial index therefore cannot paint working sources as
+broken.
+
 The verification *logic* lives in kora-repo rather than here on purpose. An
 earlier version re-implemented listing and chapter parsing in this repo and
 disagreed with itself within one run — it passed S2Read and ManhuaPlus with

@@ -8,7 +8,7 @@
   "nsfw": false,
   "piracy": false,
   "author": "Kora",
-  "icon": "https://github.com/CHAOTIC-RAY/Kora-Sources/raw/main/sources/integrations/icons/croc.png",
+  "icon": "https://github.com/CHAOTIC-RAY/Kora-Plugins/raw/main/sources/integrations/icons/croc.png",
   "website": "https://github.com/schollz/croc",
   "description": "Receive a file on this device with croc, an open-source command-line transfer tool. Run `croc send book.epub` on your laptop and type the code it prints. Receiving only; see NOTICE.md for limits.",
   "availability": "ready",
