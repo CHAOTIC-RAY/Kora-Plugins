@@ -349,6 +349,13 @@ for (const [pkg, group] of byPackage) {
       ...(g.availability ? { availability: g.availability } : {}),
       ...(g.availabilityNote ? { availabilityNote: g.availabilityNote } : {}),
       ...(Array.isArray(g.requires) && g.requires.length ? { requires: g.requires } : {}),
+      // What this source RETURNS — comics read page-by-page, or text read as a
+      // book. Kora's Discover routes on this, so it has to survive into the
+      // index: the hub lists a source before it is installed, and without it
+      // neither the chip nor the card can tell the reader what they get.
+      // Emitted only when declared; absent means the legacy manga default, so
+      // an older manifest keeps working unchanged.
+      ...(g.kind ? { kind: g.kind } : {}),
       // The readability verdict travels in the index so the app can say so
       // BEFORE the user installs and opens a chapter. Kora reads it and
       // badges the source; see `isUnreadableSource` in kora-repo.

@@ -115,6 +115,7 @@
             "piracy": false,
             "nsfw": false,
             "category": "source",
+            "kind": "book",
             "readableCheckedAt": "2026-09-30T07:19:24.435Z",
             "description": "Project Gutenberg — over 75,000 public-domain eBooks, read via the Gutendex catalogue.",
             "homeUrl": "https://gutendex.com"
@@ -139,6 +140,7 @@
             "piracy": false,
             "nsfw": false,
             "category": "source",
+            "kind": "book",
             "readableCheckedAt": "2026-09-30T07:19:24.436Z",
             "homeUrl": "https://archive.org"
           }
@@ -162,6 +164,7 @@
             "piracy": false,
             "nsfw": false,
             "category": "source",
+            "kind": "book",
             "readableNote": "Verified anonymously 2026-10-01. /@api/deki/site/search returns JSON with no token, and every result id maps to a real PDF at /@api/deki/pages/{id}/pdf/ (id 31334 -> 200, 45 KB, %PDF-; id 1919 -> 200, 81 KB).",
             "readableCheckedAt": "2026-10-01T16:02:00.000Z",
             "description": "Open-access chemistry textbooks from the LibreTexts project — every result is free to read online and download as PDF. Scoped to the Chemistry collection; Math, Physics and Biology sit on separate hosts that require an API token.",
@@ -187,6 +190,7 @@
             "piracy": true,
             "nsfw": false,
             "category": "source",
+            "kind": "manga",
             "readableCheckedAt": "2026-09-30T07:19:24.436Z",
             "description": "MangaReadOrg — a Madara-hosted manga site, read through the shared Kora Madara engine.",
             "homeUrl": "https://mangaread.org"
@@ -211,6 +215,7 @@
             "piracy": true,
             "nsfw": false,
             "category": "source",
+            "kind": "manga",
             "readable": false,
             "readableNote": "panels: panel not served for 3 chapter(s)",
             "readableCheckedAt": "2026-09-30T07:19:29.097Z",
@@ -237,6 +242,7 @@
             "piracy": true,
             "nsfw": false,
             "category": "source",
+            "kind": "manga",
             "readableCheckedAt": "2026-09-30T07:19:31.117Z",
             "homeUrl": "https://manhuahot.com"
           }
@@ -260,6 +266,7 @@
             "piracy": true,
             "nsfw": false,
             "category": "source",
+            "kind": "manga",
             "readableCheckedAt": "2026-09-30T07:19:34.531Z",
             "description": "ManhuaPlus — a Madara-hosted manga site, read through the shared Kora Madara engine.",
             "homeUrl": "https://manhuaplus.com"
@@ -284,6 +291,7 @@
             "piracy": true,
             "nsfw": false,
             "category": "source",
+            "kind": "manga",
             "readable": false,
             "readableNote": "panels: panel not served for 3 chapter(s)",
             "readableCheckedAt": "2026-09-30T07:19:38.036Z",
@@ -310,6 +318,7 @@
             "piracy": true,
             "nsfw": false,
             "category": "source",
+            "kind": "manga",
             "readableCheckedAt": "2026-09-30T07:19:40.806Z",
             "homeUrl": "https://s2read.com"
           }
