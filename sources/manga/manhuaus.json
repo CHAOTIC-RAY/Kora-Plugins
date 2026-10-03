@@ -16,7 +16,7 @@
     "mangaPath": "/manga/",
     "popularPath": "/manga/?status=hot&page=1"
   },
-  "readable": false,
-  "readableCheckedAt": "2026-09-30T07:19:38.036Z",
-  "readableNote": "panels: panel not served for 3 chapter(s)"
+  "readable": true,
+  "readableCheckedAt": "2026-10-03T05:28:43.775Z",
+  "readableNote": "Re-verified through the Cloudflare relay (direct fetch fails on this host: TLS interception). Listing 200, 8 chapters, 25 real panels in chapter-8 served as image/webp (361476B, RIFF magic) from img.manhuaus.com, 12/12 probes real across 2 series. The 2026-09-30 'panel not served' verdict was a direct-fetch artefact."
 }

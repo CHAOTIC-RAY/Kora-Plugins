@@ -24,5 +24,6 @@
     "latestOrderBy": "update"
   },
   "readable": true,
-  "readableCheckedAt": "2026-09-30T07:19:40.806Z"
+  "readableCheckedAt": "2026-10-03T05:28:43.775Z",
+  "readableNote": "Re-verified through the Cloudflare relay (direct fetch fails on this host: TLS interception). Listing 200, 44 chapters, 7 real panels in chapter-44 served as image/jpeg (343926B, magic ffd8ffe0) from cdn-1.s2read.com; 12/12 panel probes real."
 }

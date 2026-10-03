@@ -191,7 +191,8 @@
             "nsfw": false,
             "category": "source",
             "kind": "manga",
-            "readableCheckedAt": "2026-09-30T07:19:24.436Z",
+            "readableNote": "Re-verified through the Cloudflare relay (direct fetch fails on this host: TLS interception). Listing 200, 20 chapters on solo-swordmaster, 13 real panels in chapter-20 served as image/jpeg (1103789B, magic ffd8ffe1) from /uploads/WP-manga/data/; 12/12 panel probes real across 2 series. Caveat: the reader region also picks up ~40 site-chrome reaction GIFs (43B yandex embed, uploader stickers) around the panels.",
+            "readableCheckedAt": "2026-10-03T05:28:43.775Z",
             "description": "MangaReadOrg — a Madara-hosted manga site, read through the shared Kora Madara engine.",
             "homeUrl": "https://mangaread.org"
           }
@@ -216,9 +217,8 @@
             "nsfw": false,
             "category": "source",
             "kind": "manga",
-            "readable": false,
-            "readableNote": "panels: panel not served for 3 chapter(s)",
-            "readableCheckedAt": "2026-09-30T07:19:29.097Z",
+            "readableNote": "Re-verified through the Cloudflare relay (direct fetch fails on this host: TLS interception). Listing 200, 8 chapters, 12 real panels in chapter-8 served as image/jpeg (865423B, magic ffd8ffe0) from img-1.mangazin.org. The 2026-09-30 'panel not served' verdict was a direct-fetch artefact. Note: the reader injects one non-panel image (manhuatop.org furniture, 403) ahead of the panels.",
+            "readableCheckedAt": "2026-10-03T05:28:43.775Z",
             "description": "MangaZin — a Madara-hosted manga site, read through the shared Kora Madara engine.",
             "homeUrl": "https://mangazin.org"
           }
@@ -243,7 +243,8 @@
             "nsfw": false,
             "category": "source",
             "kind": "manga",
-            "readableCheckedAt": "2026-09-30T07:19:31.117Z",
+            "readableNote": "Re-verified through the Cloudflare relay (direct fetch fails on this host: TLS interception). Listing 200, 17 chapters, 7 real panels in chap-17 served as image/jpeg (588642B, magic ffd8ffe0) from cdn.manhuahot.com; 12/12 panel probes real. BL/yaoi-leaning catalogue.",
+            "readableCheckedAt": "2026-10-03T05:28:43.775Z",
             "homeUrl": "https://manhuahot.com"
           }
         ]
@@ -267,7 +268,8 @@
             "nsfw": false,
             "category": "source",
             "kind": "manga",
-            "readableCheckedAt": "2026-09-30T07:19:34.531Z",
+            "readableNote": "Re-verified through the Cloudflare relay (direct fetch fails on this host: TLS interception). Listing 200, 69 chapters on myriad-realms-gatekeeper. That series' newest 14 chapters are chapter-type-text (0 panels, correct behaviour), so the app's stock Madara selector cannot read them; other series (e.g. from-goblin-to-goblin-god chap-75) serve 10 real panels as image/jpeg (3410378B, magic ffd8ffe0) from cdn.manhuaplus.com. 12/12 panel probes real.",
+            "readableCheckedAt": "2026-10-03T05:28:43.775Z",
             "description": "ManhuaPlus — a Madara-hosted manga site, read through the shared Kora Madara engine.",
             "homeUrl": "https://manhuaplus.com"
           }
@@ -292,9 +294,8 @@
             "nsfw": false,
             "category": "source",
             "kind": "manga",
-            "readable": false,
-            "readableNote": "panels: panel not served for 3 chapter(s)",
-            "readableCheckedAt": "2026-09-30T07:19:38.036Z",
+            "readableNote": "Re-verified through the Cloudflare relay (direct fetch fails on this host: TLS interception). Listing 200, 8 chapters, 25 real panels in chapter-8 served as image/webp (361476B, RIFF magic) from img.manhuaus.com, 12/12 probes real across 2 series. The 2026-09-30 'panel not served' verdict was a direct-fetch artefact.",
+            "readableCheckedAt": "2026-10-03T05:28:43.775Z",
             "description": "Manhuaus — a Madara-hosted manga site, read through the shared Kora Madara engine.",
             "homeUrl": "https://manhuaus.com"
           }
@@ -319,7 +320,8 @@
             "nsfw": false,
             "category": "source",
             "kind": "manga",
-            "readableCheckedAt": "2026-09-30T07:19:40.806Z",
+            "readableNote": "Re-verified through the Cloudflare relay (direct fetch fails on this host: TLS interception). Listing 200, 44 chapters, 7 real panels in chapter-44 served as image/jpeg (343926B, magic ffd8ffe0) from cdn-1.s2read.com; 12/12 panel probes real.",
+            "readableCheckedAt": "2026-10-03T05:28:43.775Z",
             "homeUrl": "https://s2read.com"
           }
         ]

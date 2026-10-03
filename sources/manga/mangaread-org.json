@@ -17,5 +17,6 @@
     "popularPath": "/manga/?status=hot&page=1"
   },
   "readable": true,
-  "readableCheckedAt": "2026-09-30T07:19:24.436Z"
+  "readableCheckedAt": "2026-10-03T05:28:43.775Z",
+  "readableNote": "Re-verified through the Cloudflare relay (direct fetch fails on this host: TLS interception). Listing 200, 20 chapters on solo-swordmaster, 13 real panels in chapter-20 served as image/jpeg (1103789B, magic ffd8ffe1) from /uploads/WP-manga/data/; 12/12 panel probes real across 2 series. Caveat: the reader region also picks up ~40 site-chrome reaction GIFs (43B yandex embed, uploader stickers) around the panels."
 }

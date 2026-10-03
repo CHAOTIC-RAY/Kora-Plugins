@@ -17,7 +17,7 @@
     "popularPath": "/manga/?status=hot&page=1"
   },
   "iconNote": "No icon published upstream for this site; the card falls back to a monogram.",
-  "readable": false,
-  "readableCheckedAt": "2026-09-30T07:19:29.097Z",
-  "readableNote": "panels: panel not served for 3 chapter(s)"
+  "readable": true,
+  "readableCheckedAt": "2026-10-03T05:28:43.775Z",
+  "readableNote": "Re-verified through the Cloudflare relay (direct fetch fails on this host: TLS interception). Listing 200, 8 chapters, 12 real panels in chapter-8 served as image/jpeg (865423B, magic ffd8ffe0) from img-1.mangazin.org. The 2026-09-30 'panel not served' verdict was a direct-fetch artefact. Note: the reader injects one non-panel image (manhuatop.org furniture, 403) ahead of the panels."
 }

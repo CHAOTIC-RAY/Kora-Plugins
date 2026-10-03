@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-30T07:19:54.577Z",
-  "note": "One entry per source per changed run, oldest first, capped at 8. Produced by scripts/verify-readable.mjs. A source that flips readable <-> unreadable shows up here as a diff; that is the point.",
+  "updatedAt": "2026-10-03T05:28:43.775Z",
+  "note": "One entry per source per changed run, oldest first, capped at 8. Produced by scripts/verify-readable.mjs. A source that flips readable <-> unreadable shows up here as a diff; that is the point. Entries written by a relay-based audit on 2026-10-03: direct fetches fail on this host (TLS interception), so every verdict was re-proved through the Cloudflare relay. Both prior 'unreadable' entries (MangaZin, Manhuaus) flipped to readable on that evidence.",
   "sources": {
     "4503604002226619223": [
       {
@@ -9,6 +9,12 @@
         "verdict": "readable",
         "stage": "ok",
         "detail": "12 pages in \"Chapter 3862\", image/jpeg"
+      },
+      {
+        "at": "2026-10-03T05:28:43.775Z",
+        "verdict": "readable",
+        "stage": "ok",
+        "detail": "10 real panels in \"Chapter 75\" (from-goblin-to-goblin-god), image/jpeg 3410378B via Cloudflare relay; note myriad-realms-gatekeeper serves chapter-type-text"
       }
     ],
     "4503604002548978580": [
@@ -17,6 +23,12 @@
         "verdict": "readable",
         "stage": "ok",
         "detail": "54 pages in \"Chapter 3862\", image/gif"
+      },
+      {
+        "at": "2026-10-03T05:28:43.775Z",
+        "verdict": "readable",
+        "stage": "ok",
+        "detail": "13 real panels in \"Chapter 20\" (solo-swordmaster), image/jpeg 1103789B via Cloudflare relay"
       }
     ],
     "4503604002575350979": [
@@ -25,6 +37,12 @@
         "verdict": "unreadable",
         "stage": "panels",
         "detail": "panel not served for 3 chapter(s)"
+      },
+      {
+        "at": "2026-10-03T05:28:43.775Z",
+        "verdict": "readable",
+        "stage": "ok",
+        "detail": "25 real panels in \"Chapter 8\" (copying-skills-with-affinity), image/webp 361476B via Cloudflare relay"
       }
     ],
     "4503604003186470944": [
@@ -33,6 +51,12 @@
         "verdict": "unreadable",
         "stage": "panels",
         "detail": "panel not served for 3 chapter(s)"
+      },
+      {
+        "at": "2026-10-03T05:28:43.775Z",
+        "verdict": "readable",
+        "stage": "ok",
+        "detail": "12 real panels in \"Chapter 8\" (this-life-is-a-10th-circle-archmage), image/jpeg 865423B via Cloudflare relay"
       }
     ],
     "kora-manga-manhuahot": [
@@ -41,6 +65,12 @@
         "verdict": "readable",
         "stage": "ok",
         "detail": "8 pages in \"Chap 412\", image/jpeg"
+      },
+      {
+        "at": "2026-10-03T05:28:43.775Z",
+        "verdict": "readable",
+        "stage": "ok",
+        "detail": "7 real panels in \"Chap 17\" (yoo-yoo-sang-jong), image/jpeg 588642B via Cloudflare relay"
       }
     ],
     "kora-manga-s2read": [
@@ -49,6 +79,12 @@
         "verdict": "readable",
         "stage": "ok",
         "detail": "11 pages in \"Chapter 168\", image/jpeg"
+      },
+      {
+        "at": "2026-10-03T05:28:43.775Z",
+        "verdict": "readable",
+        "stage": "ok",
+        "detail": "7 real panels in \"Chapter 44\" (the-scent-of-desire), image/jpeg 343926B via Cloudflare relay"
       }
     ]
   }
