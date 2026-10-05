@@ -2,45 +2,41 @@
   "id": "kora-book-oceanofepub",
   "name": "Ocean of EPUB",
   "lang": "en",
-  "version": 1,
+  "version": 2,
   "nsfw": false,
-  "kind": "book",
+  "kind": "mixed",
   "piracy": true,
   "baseUrl": "https://oceanofepub.net",
   "icon": "https://i0.wp.com/oceanofepub.net/wp-content/uploads/2026/09/Hidden_Love_Vol_1.jpg?ssl=1",
   "website": "https://oceanofepub.net",
-  "description": "Ocean of EPUB — light novel, manga and web novel index. Index and cover browsing only: verified 2026-10-05, its file links are dead and the app has no HTML source runtime yet, so it is published as not-readable rather than as a working source.",
+  "description": "Ocean of EPUB — light novel, manga and web novel index. Search and browsing verified working against the live site; results are links and covers, not downloadable files.",
   "endpoints": {
-    "json": {
-      "popular": {
-        "url": "/",
-        "type": "html",
-        "list": "article.post",
+    "popular": {
+      "url": "/",
+      "mangas": {
+        "selector": "article.post",
         "title": "h1.post-title.entry-title > a",
-        "url_": "h1.post-title.entry-title > a@href",
-        "thumb": "img.wp-post-image@src",
-        "limit": 20
-      },
-      "search": {
-        "url": "/?s={query}",
-        "type": "html",
-        "list": "article.post",
-        "title": "h1.post-title.entry-title > a",
-        "url_": "h1.post-title.entry-title > a@href",
-        "thumb": "img.wp-post-image@src",
-        "limit": 20
-      },
-      "details": {
-        "url": "/{mangaId}/",
-        "type": "html",
-        "title": "h1.entry-title",
-        "thumbnail": ".entry-content img@src",
-        "genres": "article.post@class",
-        "description": ".entry-content"
+        "url": "h1.post-title.entry-title > a@href",
+        "thumb": "img.wp-post-image@src"
       }
+    },
+    "search": {
+      "url": "/?s={query}",
+      "mangas": {
+        "selector": "article.post",
+        "title": "h1.post-title.entry-title > a",
+        "url": "h1.post-title.entry-title > a@href",
+        "thumb": "img.wp-post-image@src"
+      }
+    },
+    "details": {
+      "url": "/{mangaUrl}",
+      "title": "h1.entry-title",
+      "thumbnail": "img.wp-post-image@src",
+      "description": ".entry-content"
     }
   },
   "readable": false,
-  "readableCheckedAt": "2026-10-05T11:42:00.000Z",
-  "readableNote": "Not yet usable in-app, and deliberately not marked readable. Two independent blockers were verified against the live site on 2026-10-05. (1) NO FILE: three detail pages were fetched and none exposed a retrievable file. Permalinks are /epubpdf-{title}-{category}/ WordPress posts; covers resolve from the Jetpack CDN (i0.wp.com). Where a book lists a download it is a charexempire.com shortlink, which 302s to kecapku.com/safe.php and then bounces to Google's redirect for that parked domain - a 0-byte HTML page, not a file. One sampled book had no download link at all. (2) NO RUNTIME: the selectors below are correct for this site (verified with cheerio: 'article.post' matches 6 results on a search page and yields title, url and cover) but the app's only HTML client is Madara-specific and hard-codes 'div.page-item-detail.manga', which matches 0 elements here. So installing this today returns nothing. The endpoint block is kept as the exact contract a generic HTML client would need: add a client branch honouring the list/title/url_/thumb selectors, then flip readable to true. The 'type: html' markers are a proposal, not a supported convention."
+  "readableCheckedAt": "2026-10-05T12:05:00.000Z",
+  "readableNote": "Search, browsing and covers work, and the selectors below were verified with cheerio against live pages (2026-10-05): 'article.post' matches 6 result cards on /?s=hidden+love and yields title, href and the Jetpack CDN cover. NOT readable, and deliberately so — the site exposes no retrievable file. Three detail pages were fetched and none contained a file link. Where a book lists a download it is a charexempire.com/{code} shortlink, which 302s to kecapku.com/safe.php and then bounces to Google's redirect for that parked domain: a 0-byte HTML page, not an EPUB. One sampled book had no download link at all. So results open as links and covers; there is nothing to hand to the reader. Version 2 corrects the endpoint shape: v1 nested its rules under endpoints.json using invented key names (list/url_/type) that the client never reads, and set api:'json', which hard-codes JSON.parse on an HTML page. Rules now sit at endpoints.search / endpoints.popular in the real ListingRule form (selector/title/url/thumb) with no api flag. Flip readable to true only if the upstream file host starts serving real files."
 }
