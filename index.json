@@ -7,6 +7,33 @@
   "extensionList": {
     "extensions": [
       {
+        "name": "Ocean Of Epub",
+        "packageName": "kora.source.ocean-of-epub",
+        "resources": {
+          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Plugins/main/sources/books/oceanofepub.json",
+          "iconUrl": "https://i0.wp.com/oceanofepub.net/wp-content/uploads/2026/09/Hidden_Love_Vol_1.jpg?ssl=1"
+        },
+        "extensionLib": "kora-1",
+        "versionCode": "1000",
+        "versionName": "1.0.0",
+        "sources": [
+          {
+            "id": "kora-book-oceanofepub",
+            "name": "Ocean of EPUB",
+            "language": "en",
+            "piracy": true,
+            "nsfw": false,
+            "category": "source",
+            "kind": "book",
+            "readable": false,
+            "readableNote": "Not yet usable in-app, and deliberately not marked readable. Two independent blockers were verified against the live site on 2026-10-05. (1) NO FILE: three detail pages were fetched and none exposed a retrievable file. Permalinks are /epubpdf-{title}-{category}/ WordPress posts; covers resolve from the Jetpack CDN (i0.wp.com). Where a book lists a download it is a charexempire.com shortlink, which 302s to kecapku.com/safe.php and then bounces to Google's redirect for that parked domain - a 0-byte HTML page, not a file. One sampled book had no download link at all. (2) NO RUNTIME: the selectors below are correct for this site (verified with cheerio: 'article.post' matches 6 results on a search page and yields title, url and cover) but the app's only HTML client is Madara-specific and hard-codes 'div.page-item-detail.manga', which matches 0 elements here. So installing this today returns nothing. The endpoint block is kept as the exact contract a generic HTML client would need: add a client branch honouring the list/title/url_/thumb selectors, then flip readable to true. The 'type: html' markers are a proposal, not a supported convention.",
+            "readableCheckedAt": "2026-10-05T11:42:00.000Z",
+            "description": "Ocean of EPUB — light novel, manga and web novel index. Index and cover browsing only: verified 2026-10-05, its file links are dead and the app has no HTML source runtime yet, so it is published as not-readable rather than as a working source.",
+            "homeUrl": "https://oceanofepub.net"
+          }
+        ]
+      },
+      {
         "name": "Calibre",
         "packageName": "kora.integration.calibre",
         "resources": {

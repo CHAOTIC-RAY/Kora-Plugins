@@ -1,0 +1,46 @@
+{
+  "id": "kora-book-oceanofepub",
+  "name": "Ocean of EPUB",
+  "lang": "en",
+  "version": 1,
+  "nsfw": false,
+  "kind": "book",
+  "piracy": true,
+  "baseUrl": "https://oceanofepub.net",
+  "icon": "https://i0.wp.com/oceanofepub.net/wp-content/uploads/2026/09/Hidden_Love_Vol_1.jpg?ssl=1",
+  "website": "https://oceanofepub.net",
+  "description": "Ocean of EPUB — light novel, manga and web novel index. Index and cover browsing only: verified 2026-10-05, its file links are dead and the app has no HTML source runtime yet, so it is published as not-readable rather than as a working source.",
+  "endpoints": {
+    "json": {
+      "popular": {
+        "url": "/",
+        "type": "html",
+        "list": "article.post",
+        "title": "h1.post-title.entry-title > a",
+        "url_": "h1.post-title.entry-title > a@href",
+        "thumb": "img.wp-post-image@src",
+        "limit": 20
+      },
+      "search": {
+        "url": "/?s={query}",
+        "type": "html",
+        "list": "article.post",
+        "title": "h1.post-title.entry-title > a",
+        "url_": "h1.post-title.entry-title > a@href",
+        "thumb": "img.wp-post-image@src",
+        "limit": 20
+      },
+      "details": {
+        "url": "/{mangaId}/",
+        "type": "html",
+        "title": "h1.entry-title",
+        "thumbnail": ".entry-content img@src",
+        "genres": "article.post@class",
+        "description": ".entry-content"
+      }
+    }
+  },
+  "readable": false,
+  "readableCheckedAt": "2026-10-05T11:42:00.000Z",
+  "readableNote": "Not yet usable in-app, and deliberately not marked readable. Two independent blockers were verified against the live site on 2026-10-05. (1) NO FILE: three detail pages were fetched and none exposed a retrievable file. Permalinks are /epubpdf-{title}-{category}/ WordPress posts; covers resolve from the Jetpack CDN (i0.wp.com). Where a book lists a download it is a charexempire.com shortlink, which 302s to kecapku.com/safe.php and then bounces to Google's redirect for that parked domain - a 0-byte HTML page, not a file. One sampled book had no download link at all. (2) NO RUNTIME: the selectors below are correct for this site (verified with cheerio: 'article.post' matches 6 results on a search page and yields title, url and cover) but the app's only HTML client is Madara-specific and hard-codes 'div.page-item-detail.manga', which matches 0 elements here. So installing this today returns nothing. The endpoint block is kept as the exact contract a generic HTML client would need: add a client branch honouring the list/title/url_/thumb selectors, then flip readable to true. The 'type: html' markers are a proposal, not a supported convention."
+}
