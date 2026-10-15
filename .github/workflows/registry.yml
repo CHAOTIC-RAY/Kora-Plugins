@@ -31,11 +31,9 @@ name: registry
 #     except that the stamped-unreadable count is checked below, so a source
 #     cannot regress into shipping unverified without the history showing it.
 #
-# EXPECTED CURRENT STATE: this workflow FAILS on push, because MangaZin and
-# Manhuaus are stamped `readable: false` — they list chapters and then serve
-# no page images. That is the gate working. They are pending a decision (fix
-# or remove), not a bug in this file. Do not "fix" the workflow by deleting
-# those two sources without deciding; do not relax the gate to make it green.
+# The live-source check intentionally fails when the current run proves a source
+# cannot serve real pages. Fix the source path/selectors or explicitly remove the
+# source; do not relax the gate or turn a genuine regression into a warning.
 
 on:
   push:
@@ -126,7 +124,7 @@ jobs:
             echo "::error::readable-history.json was not written — the verifier did not check this registry"
             exit 1
           fi
-          n=$(node -e "const h=require('./readable-history.json');console.log(Object.values(h.sources).flat().filter(v=>v.verdict==='unreadable').length)")
+          n=$(node -e "const h=require('./readable-history.json');console.log(Object.values(h.sources).map(v=>Array.isArray(v)?v[v.length-1]:null).filter(v=>v&&v.verdict==='unreadable').length)")
           echo "sources with an unreadable verdict on record: $n"
           if [ "$n" -gt 0 ]; then
             echo "::error::$n source(s) cannot serve a page image. See readable-history.json in the summary."

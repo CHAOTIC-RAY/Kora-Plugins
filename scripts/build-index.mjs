@@ -234,7 +234,8 @@ function iconFor(group) {
     );
     return "";
   }
-  return rewriteSlug(icon);
+  if (/^https?:\/\//i.test(icon)) return rewriteSlug(icon);
+  return `${RAW_BASE}/${String(icon).replace(/^\/+/, "")}`;
 }
 
 /**

@@ -14,6 +14,11 @@ import { readFileSync } from "node:fs";
 
 const index = JSON.parse(readFileSync("index.json", "utf8"));
 const entries = Object.values(index.extensionList.extensions).flat();
+const repoSlug = String(index.contact?.website || "").replace(/^https?:\/\/github\.com\//i, "").replace(/\/+$/, "") || "CHAOTIC-RAY/Kora-Plugins";
+function publishUrl(value) {
+  if (/^https?:\/\//i.test(String(value || ""))) return value;
+  return `https://raw.githubusercontent.com/${repoSlug}/main/${String(value || "").replace(/^\/+/, "")}`;
+}
 
 /** Map a published apkUrl back to the local file it should contain. */
 function localPathFor(apkUrl) {
@@ -44,7 +49,7 @@ for (const e of entries) {
         ? await (await fetch(url)).json()
         : null;
     if (def?.icon) {
-      const ir = await fetch(def.icon, { method: "HEAD" });
+      const ir = await fetch(publishUrl(def.icon), { method: "HEAD" });
       icon = ir.ok ? "icon OK" : `icon HTTP ${ir.status}`;
       if (!ir.ok) bad++;
     }

@@ -8,7 +8,7 @@
   "api": "json",
   "piracy": false,
   "baseUrl": "https://gutendex.com",
-  "icon": "https://www.gutenberg.org/cache/epub/1342/pg1342.cover.medium.jpg",
+  "icon": "icons/gutenberg.svg",
   "website": "https://www.gutenberg.org",
   "description": "Project Gutenberg — over 75,000 public-domain eBooks, read via the Gutendex catalogue.",
   "endpoints": {
