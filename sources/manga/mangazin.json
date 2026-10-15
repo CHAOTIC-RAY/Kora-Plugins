@@ -14,7 +14,7 @@
   "description": "MangaZin — a Madara-hosted manga site, read through the shared Kora Madara engine.",
   "madara": {
     "mangaPath": "/manga/",
-    "popularPath": "/manga/?status=hot&page=1"
+    "popularPath": "/manga/?status=hot&page=1&style=page"
   },
   "iconNote": "No icon published upstream for this site; the card falls back to a monogram.",
   "readable": true,

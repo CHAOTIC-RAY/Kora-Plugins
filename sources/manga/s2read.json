@@ -20,7 +20,7 @@
   },
   "madara": {
     "mangaSubString": "manga",
-    "popularPath": "/manga/?status=hot&page=1",
+    "popularPath": "/manga/?status=hot&page=1&style=page",
     "popularOrderBy": "views",
     "latestOrderBy": "update"
   },
