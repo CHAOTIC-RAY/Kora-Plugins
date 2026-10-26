@@ -345,6 +345,7 @@ for (const [pkg, group] of byPackage) {
       // whether the thing can actually work. Only present on those categories.
       ...(g.themeId ? { themeId: g.themeId } : {}),
       ...(g.tokens ? { tokens: g.tokens } : {}),
+      ...(g.styleUrl ? { styleUrl: g.styleUrl } : {}),
       ...(typeof g.dark === "boolean" ? { dark: g.dark } : {}),
       ...(g.target ? { target: g.target } : {}),
       ...(g.availability ? { availability: g.availability } : {}),

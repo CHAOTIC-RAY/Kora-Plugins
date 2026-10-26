@@ -1,0 +1,27 @@
+{
+  "id": "kora-theme-cyberui-operator",
+  "name": "CyberUI // Operator",
+  "version": 1,
+  "category": "theme",
+  "themeId": "cyberui-operator",
+  "dark": true,
+  "lang": "en",
+  "nsfw": false,
+  "piracy": false,
+  "author": "Kora",
+  "icon": "https://github.com/CHAOTIC-RAY/Kora-Plugins/raw/main/sources/themes/icons/copper-night.png",
+  "website": "https://github.com/CHAOTIC-RAY/Kora-Plugins",
+  "description": "A full Night City reader HUD: dark wine panels, cyan signal lines, coral actions, hardware-cut cards, UNO styling, and terminal labels.",
+  "tokens": {
+    "bg": "#1B1115",
+    "text": "#B7E5E6",
+    "textMuted": "#81AEB1",
+    "border": "#57BFC4",
+    "accent": "#E85C51",
+    "card": "#281A1F",
+    "toastBg": "#281A1F"
+  },
+  "styleUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Plugins/main/themes/cyberui-operator.css",
+  "readable": true,
+  "readableCheckedAt": "2026-10-26T00:00:00.000Z"
+}

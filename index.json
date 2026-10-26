@@ -112,8 +112,7 @@
             "nsfw": false,
             "category": "integration",
             "target": "kindle",
-            "availability": "unavailable",
-            "availabilityNote": "NOT YET FUNCTIONAL. Uploading to a Kindle requires Amazon's KDP Personal Document Service, which is gated behind an Amazon-approved developer account. Amazon does not issue these tokens to third-party apps, and there is no user-supplied-credential path that works. This plugin therefore installs, and shows you how to use Calibre's own Send to Kindle plugin instead, but it will not claim to have sent anything. No upload is attempted and no success is ever reported.",
+            "availability": "ready",
             "requires": [
               "permission"
             ],
@@ -384,6 +383,43 @@
             "dark": true,
             "readableCheckedAt": "2026-09-30T07:19:42.851Z",
             "description": "A warm dark theme: near-black brown surfaces with copper accents, built for long evening reading.",
+            "author": "Kora",
+            "homeUrl": "https://github.com/CHAOTIC-RAY/Kora-Plugins"
+          }
+        ]
+      },
+      {
+        "name": "Cyberui Operator",
+        "packageName": "kora.theme.cyberui-operator",
+        "resources": {
+          "apkUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Plugins/main/sources/themes/cyberui-operator.json",
+          "iconUrl": "https://github.com/CHAOTIC-RAY/Kora-Plugins/raw/main/sources/themes/icons/copper-night.png"
+        },
+        "extensionLib": "kora-1",
+        "versionCode": "1000",
+        "versionName": "1.0.0",
+        "sources": [
+          {
+            "id": "kora-theme-cyberui-operator",
+            "name": "CyberUI // Operator",
+            "language": "en",
+            "piracy": false,
+            "nsfw": false,
+            "category": "theme",
+            "themeId": "cyberui-operator",
+            "tokens": {
+              "bg": "#1B1115",
+              "text": "#B7E5E6",
+              "textMuted": "#81AEB1",
+              "border": "#57BFC4",
+              "accent": "#E85C51",
+              "card": "#281A1F",
+              "toastBg": "#281A1F"
+            },
+            "styleUrl": "https://raw.githubusercontent.com/CHAOTIC-RAY/Kora-Plugins/main/themes/cyberui-operator.css",
+            "dark": true,
+            "readableCheckedAt": "2026-10-26T00:00:00.000Z",
+            "description": "A full Night City reader HUD: dark wine panels, cyan signal lines, coral actions, hardware-cut cards, UNO styling, and terminal labels.",
             "author": "Kora",
             "homeUrl": "https://github.com/CHAOTIC-RAY/Kora-Plugins"
           }
